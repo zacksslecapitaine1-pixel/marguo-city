@@ -1,96 +1,57 @@
 /* ================================================================
-   LOADER.JS — Page Transition Loader
-   Logo + progress bar on every page load
+   LOADER.JS v2 — Fast Page Transitions
    ================================================================ */
-
-(function () {
+(function(){
   'use strict';
 
-  /* ── Inject loader HTML ── */
-  const loader = document.createElement('div');
-  loader.id = 'pageLoader';
-  loader.className = 'page-loader';
-  loader.innerHTML = `
-    <img class="pl-logo"
-         src="images/logo.png"
-         alt="Marguo City"
-         onerror="this.style.display='none'; document.getElementById('plLogoText').style.display='block'"/>
-    <div class="pl-logo-text" id="plLogoText" style="display:none;">Marguo City</div>
-    <div class="pl-bar-wrap">
-      <div class="pl-bar" id="plBar"></div>
-    </div>
-    <div class="pl-sub">Hôtel · Bar · Restaurant</div>
-  `;
-
-  /* Insert as first child of body — runs before DOMContentLoaded */
-  if (document.body) {
-    document.body.insertBefore(loader, document.body.firstChild);
-  } else {
-    document.addEventListener('DOMContentLoaded', () => {
-      document.body.insertBefore(loader, document.body.firstChild);
-    });
+  function inject(){
+    const l=document.createElement('div');
+    l.id='pageLoader'; l.className='page-loader';
+    l.innerHTML=`
+      <img class="pl-logo" src="images/logo.png" alt="Marguo City"
+           onerror="this.style.display='none';document.getElementById('pltx').style.display='block'"/>
+      <div class="pl-logo-text" id="pltx" style="display:none;">Marguo City</div>
+      <div class="pl-bar-wrap"><div class="pl-bar" id="plBar"></div></div>
+      <div class="pl-sub">Hôtel · Bar · Restaurant</div>`;
+    document.body.insertBefore(l, document.body.firstChild);
   }
 
-  /* ── Hide loader after page load ── */
-  function hideLoader() {
-    const l = document.getElementById('pageLoader');
-    if (!l) return;
-    /* Small delay so animation completes gracefully */
-    setTimeout(() => {
+  function hide(){
+    const l=document.getElementById('pageLoader');
+    if(!l)return;
+    setTimeout(()=>{
       l.classList.add('hidden');
-      /* Remove from DOM after transition */
-      setTimeout(() => l.remove(), 600);
-    }, 680);
+      setTimeout(()=>l.remove(), 500);
+    }, 450); /* Réduit de 680ms à 450ms */
   }
 
-  if (document.readyState === 'complete') {
-    hideLoader();
-  } else {
-    window.addEventListener('load', hideLoader);
-    /* Fallback: hide after max 2.2s even if resources lag */
-    setTimeout(hideLoader, 2200);
-  }
+  /* Inject */
+  if(document.body) inject();
+  else document.addEventListener('DOMContentLoaded', inject);
 
-  /* ── Trigger loader on internal link clicks ── */
-  document.addEventListener('click', function (e) {
-    const link = e.target.closest('a[href]');
-    if (!link) return;
+  /* Hide on load */
+  if(document.readyState==='complete') hide();
+  else { window.addEventListener('load', hide); setTimeout(hide, 1500); }
 
-    const href = link.getAttribute('href');
+  /* Transition on internal links — 500ms max */
+  document.addEventListener('click', function(e){
+    const a=e.target.closest('a[href]');
+    if(!a) return;
+    const href=a.getAttribute('href');
+    if(!href||href.startsWith('http')||href.startsWith('#')||
+       href.startsWith('tel:')||href.startsWith('mailto:')||
+       href.startsWith('whatsapp:')||a.target==='_blank') return;
 
-    /* Skip: external, anchor-only, tel, mailto, whatsapp, new tab */
-    if (
-      !href ||
-      href.startsWith('http') ||
-      href.startsWith('#') ||
-      href.startsWith('tel:') ||
-      href.startsWith('mailto:') ||
-      href.startsWith('whatsapp:') ||
-      link.target === '_blank'
-    ) return;
-
-    /* Show loader */
-    const newLoader = document.createElement('div');
-    newLoader.id = 'pageLoader';
-    newLoader.className = 'page-loader';
-    newLoader.innerHTML = `
-      <img class="pl-logo"
-           src="images/logo.png"
-           alt="Marguo City"
+    e.preventDefault();
+    const nl=document.createElement('div');
+    nl.className='page-loader'; nl.id='pageLoader';
+    nl.innerHTML=`
+      <img class="pl-logo" src="images/logo.png" alt="Marguo City"
            onerror="this.style.display='none'"/>
       <div class="pl-logo-text">Marguo City</div>
-      <div class="pl-bar-wrap">
-        <div class="pl-bar"></div>
-      </div>
-      <div class="pl-sub">Hôtel · Bar · Restaurant</div>
-    `;
-    document.body.appendChild(newLoader);
-
-    /* Let the bar animation play then navigate */
-    e.preventDefault();
-    setTimeout(() => {
-      window.location.href = href;
-    }, 820);
-  }, { capture: true });
-
+      <div class="pl-bar-wrap"><div class="pl-bar"></div></div>
+      <div class="pl-sub">Hôtel · Bar · Restaurant</div>`;
+    document.body.appendChild(nl);
+    setTimeout(()=>{ window.location.href=href; }, 500);
+  }, {capture:true});
 })();

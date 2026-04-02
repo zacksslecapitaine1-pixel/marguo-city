@@ -1,0 +1,287 @@
+/* ================================================================
+   VIBES.CSS — Couleurs vives · Illustrations · Visual Richness
+   ================================================================ */
+
+/* ── COULEURS ADDITIONNELLES ── */
+:root {
+  --teal:    #0D9488;
+  --teal-l:  #14B8A6;
+  --rust:    #C2410C;
+  --rust-l:  #EA580C;
+  --emerald: #059669;
+  --violet:  #7C3AED;
+  --sky:     #0284C7;
+  --warm:    #D97706;
+}
+
+/* ── HERO GRADIENT OVERLAY plus coloré ── */
+.hero-photo::after {
+  background: linear-gradient(
+    160deg,
+    rgba(7,6,5,.75) 0%,
+    rgba(13,30,10,.45) 45%,
+    rgba(7,6,5,.82) 100%
+  ) !important;
+}
+
+/* Particules dorées hero */
+.hero::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 2;
+  background-image:
+    radial-gradient(circle, rgba(201,168,76,.18) 1px, transparent 1px),
+    radial-gradient(circle, rgba(201,168,76,.1) 1px, transparent 1px);
+  background-size: 60px 60px, 100px 100px;
+  background-position: 0 0, 30px 30px;
+  pointer-events: none;
+  animation: particlesDrift 20s linear infinite;
+}
+@keyframes particlesDrift {
+  from { background-position: 0 0, 30px 30px; }
+  to   { background-position: 60px 60px, 90px 90px; }
+}
+
+/* ── SECTIONS COLORÉES ── */
+/* About section — fond chaud */
+#about {
+  background: linear-gradient(160deg, #0a0805 0%, #0f1a0e 50%, #0a0805 100%) !important;
+  position: relative;
+}
+#about::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A84C' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+#about .container { position: relative; z-index: 1; }
+
+/* Rooms section — gradient subtil */
+#rooms-preview {
+  background: linear-gradient(180deg, #070605 0%, #0c1510 60%, #070605 100%) !important;
+}
+
+/* Restaurant — fond chaud terracotta subtil */
+#restaurant-preview {
+  background: linear-gradient(160deg, #0e0905 0%, #120a06 100%) !important;
+  position: relative;
+}
+#restaurant-preview::after {
+  content: '';
+  position: absolute; top: 0; right: 0; width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(194,65,12,.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Events — fond bleu nuit */
+#events-preview {
+  background: linear-gradient(160deg, #05080f 0%, #080c16 100%) !important;
+  position: relative;
+}
+#events-preview::before {
+  content: '';
+  position: absolute; bottom: 0; left: 0; width: 250px; height: 250px;
+  background: radial-gradient(circle, rgba(2,132,199,.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ── STAT ITEMS COLORÉS ── */
+.stats-bar .stat-item:nth-child(1) .stat-n { background: linear-gradient(135deg,#C9A84C,#F5D78E); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.stats-bar .stat-item:nth-child(2) .stat-n { background: linear-gradient(135deg,#14B8A6,#0D9488); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.stats-bar .stat-item:nth-child(3) .stat-n { background: linear-gradient(135deg,#EA580C,#C2410C); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.stats-bar .stat-item:nth-child(4) .stat-n { background: linear-gradient(135deg,#7C3AED,#6D28D9); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+/* ── ROOM CARDS — badge coloré par type ── */
+.room-card[data-cat="clim"] .room-card-type { border-color: var(--teal-l); color: var(--teal-l); }
+.room-card[data-cat="vent"] .room-card-type { border-color: var(--warm); color: var(--warm); }
+
+/* ── CTA BANNER — gradient coloré ── */
+.cta-banner {
+  background: linear-gradient(135deg,
+    #080c10 0%,
+    #0c1a12 30%,
+    #100d05 70%,
+    #080c10 100%
+  ) !important;
+}
+.cta-banner::before {
+  background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(107,78,10,.2) 0%, transparent 70%) !important;
+}
+
+/* ── FEAT ITEMS COLORÉS ── */
+.feat-item:nth-child(odd)  .feat-icon { background: rgba(13,148,136,.1); border-color: rgba(13,148,136,.25); }
+.feat-item:nth-child(odd)  .feat-icon svg { color: var(--teal-l); }
+.feat-item:nth-child(even) .feat-icon { background: rgba(201,168,76,.1); border-color: rgba(201,168,76,.25); }
+
+/* ── CONTACT CARDS colored icons ── */
+.ct-card:nth-child(1) .ct-icon { background: rgba(13,148,136,.1); border-color: rgba(13,148,136,.25); }
+.ct-card:nth-child(1) .ct-icon svg { color: var(--teal-l); }
+.ct-card:nth-child(2) .ct-icon { background: rgba(234,88,12,.1); border-color: rgba(234,88,12,.25); }
+.ct-card:nth-child(2) .ct-icon svg { color: var(--rust-l); }
+.ct-card:nth-child(3) .ct-icon { background: rgba(37,211,102,.1); border-color: rgba(37,211,102,.25); }
+.ct-card:nth-child(3) .ct-icon svg { color: #25D366; }
+.ct-card:nth-child(4) .ct-icon { background: rgba(124,58,237,.1); border-color: rgba(124,58,237,.25); }
+.ct-card:nth-child(4) .ct-icon svg { color: var(--violet); }
+
+/* ── HALL FEATURES ICONS colorés ── */
+.hf-item { border-left: 2px solid var(--teal-l) !important; }
+.hf-item svg { color: var(--teal-l) !important; }
+
+/* ── USE ITEMS colored icons ── */
+.use-icon { font-size: 2.2rem; display: inline-block;
+  filter: drop-shadow(0 2px 8px rgba(201,168,76,.3));
+}
+
+/* ── SPEC GRID coloré ── */
+.spec-item:nth-child(1) .spec-icon,
+.spec-item:nth-child(4) .spec-icon { filter: drop-shadow(0 2px 8px rgba(13,148,136,.4)); }
+.spec-item:nth-child(2) .spec-icon,
+.spec-item:nth-child(5) .spec-icon { filter: drop-shadow(0 2px 8px rgba(201,168,76,.4)); }
+.spec-item:nth-child(3) .spec-icon,
+.spec-item:nth-child(6) .spec-icon { filter: drop-shadow(0 2px 8px rgba(234,88,12,.3)); }
+
+/* ── DECORATIVE SVG ILLUSTRATIONS ── */
+/* Losange décoratif en coin */
+.section-gem {
+  position: absolute;
+  pointer-events: none; opacity: .07; z-index: 0;
+}
+
+/* ── GALLERY STRIP — couleurs au hover ── */
+.gs-item::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(135deg, rgba(13,148,136,.25), rgba(201,168,76,.2));
+  opacity: 0; transition: opacity .4s;
+}
+.gs-item:hover::before { opacity: 1; }
+
+/* ── MOBILE NAV — background coloré ── */
+.mob-nav {
+  background: linear-gradient(160deg, #0e0c09 0%, #0a1009 100%) !important;
+  border-left: 2px solid var(--g2) !important;
+}
+
+/* ── FOOTER gradient ── */
+footer { background: linear-gradient(160deg, #0e0c09 0%, #0a0d09 100%) !important; }
+
+/* ── LOADER fond légèrement coloré ── */
+.page-loader {
+  background: radial-gradient(ellipse at center, #0e0c09 0%, #070605 100%) !important;
+}
+
+/* ── ROOM CARD HOVER border coloré ── */
+.room-card[data-cat="clim"]:hover { border-color: rgba(13,148,136,.4) !important; }
+.room-card[data-cat="vent"]:hover { border-color: rgba(217,119,6,.4) !important; }
+
+/* ── AMENITY TAGS colorés ── */
+.amenity-tag:hover { border-color: rgba(13,148,136,.4) !important; color: var(--teal-l) !important; }
+
+/* ── PRICE CHIPS ── */
+.price-chip { border-color: rgba(13,148,136,.2) !important; }
+.price-chip span { color: var(--teal-l) !important; }
+
+/* ── FILTER BUTTONS ── */
+.filter-btn.on, .filter-btn:hover {
+  border-color: var(--teal-l) !important;
+  color: var(--teal-l) !important;
+  background: rgba(13,148,136,.08) !important;
+}
+
+/* ── EV PILLS colorés ── */
+.ev-pill {
+  background: rgba(2,132,199,.08) !important;
+  border-color: rgba(2,132,199,.35) !important;
+  color: #38BDF8 !important;
+}
+
+/* ── HALL BADGES ── */
+.hall-badge { border-color: var(--teal-l) !important; color: var(--teal-l) !important; }
+
+/* ── QFORM INPUTS focus ── */
+.qf-input:focus, .cf-input:focus { border-color: var(--teal-l) !important; }
+
+/* ── MENU PRICE BADGE ── */
+.menu-price-badge { border-color: rgba(234,88,12,.3) !important; background: rgba(234,88,12,.05) !important; }
+.menu-price-badge .val { background: linear-gradient(135deg,#C2410C,#EA580C) !important; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+/* ── DRINK ITEMS ── */
+.drink-val { background: linear-gradient(135deg,#0D9488,#14B8A6) !important; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+/* ── CAT CHIPS restaurant ── */
+.cat-chip {
+  background: rgba(13,148,136,.08) !important;
+  border-color: rgba(13,148,136,.25) !important;
+  color: var(--teal-l) !important;
+}
+
+/* ── BOOKING PAGE bg ── */
+.bk-bg {
+  background:
+    radial-gradient(ellipse 60% 50% at 70% 20%, rgba(13,148,136,.07) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,168,76,.06) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 50% at 50% 50%, rgba(7,58,12,.15) 0%, transparent 70%),
+    var(--black) !important;
+}
+
+/* ── TRUST ITEMS colorés ── */
+.trust-item:nth-child(1) svg { color: var(--teal-l) !important; }
+.trust-item:nth-child(2) svg { color: var(--warm) !important; }
+.trust-item:nth-child(3) svg { color: #25D366 !important; }
+.trust-item:nth-child(4) svg { color: var(--violet) !important; }
+
+/* ── OUTDOOR FEATURES ── */
+.outdoor-info .hf-item { border-left-color: var(--emerald) !important; }
+.outdoor-info .hf-item svg { color: var(--emerald) !important; }
+
+/* ── CAPACITY BLOCK ── */
+.capacity-block .cap-n {
+  background: linear-gradient(135deg,#0D9488,#14B8A6,#0D9488) !important;
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+}
+
+/* ── POLICY BAND icons ── */
+.pol-cell:nth-child(1) svg { color: var(--teal-l) !important; }
+.pol-cell:nth-child(2) svg { color: var(--rust-l) !important; }
+.pol-cell:nth-child(3) svg { color: var(--warm) !important; }
+.pol-cell:nth-child(4) svg { color: var(--violet) !important; }
+.pol-cell .val { color: var(--teal-l) !important; }
+
+/* ── PHOTO mosaic hover effet coloré ── */
+.am-main:hover img, .am-tr:hover img, .am-br:hover img {
+  filter: saturate(1.2) brightness(1.05);
+}
+
+/* ── HOURS BADGE ── */
+.hours-badge { border-color: rgba(13,148,136,.4) !important; background: rgba(13,148,136,.06) !important; }
+
+/* ── IFRAMES map ── */
+.map-frame { border-color: var(--teal-l) !important; }
+
+/* ── ERROR 404 ── */
+.err-code {
+  background: linear-gradient(135deg,#6B4E0A 0%,#C9A84C 35%,#F5D78E 60%,#0D9488 100%) !important;
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+}
+
+/* ── ANIMATED GRADIENT LINE (decorative) ── */
+.gold-line {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--teal-l), var(--g2), var(--rust-l), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+  margin: 2rem 0;
+  border: none;
+}
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to   { background-position: 200% 0; }
+}
+
+/* ── ROOM CARD top border colored ── */
+.room-card { border-top: 2px solid transparent !important; transition: border-top-color .3s, transform .3s, box-shadow .3s, border-color .3s !important; }
+.room-card[data-cat="clim"] { border-top-color: var(--teal-l) !important; }
+.room-card[data-cat="vent"] { border-top-color: var(--warm) !important; }
+
+/* ── SECTION subtle left accent ── */
+.s-intro .eyebrow::before { background: var(--teal-l) !important; }
+.eyebrow.center::before, .eyebrow.center::after { background: var(--teal-l) !important; }
