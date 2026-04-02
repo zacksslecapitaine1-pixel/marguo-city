@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://marguocity.github.io/sitemap.xml
+
+# Hôtel Marguo City — Lomé, Togo
+# Designed by Dev.zak — dev-zak.netlify.app

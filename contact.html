@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Contactez l'Hôtel Marguo City à Lomé, Togo. Adresse : Adidogomé Soviépé. Tél : +228 99 20 46 38. Ouvert 24h/24."/>
+  <meta property="og:title" content="Contact | Hôtel Marguo City"/>
+  <title>Contact | Hôtel Marguo City</title>
+  <link rel="icon" type="image/png" href="images/logo.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/main.css"/>
+  <link rel="stylesheet" href="css/components.css"/>
+  <link rel="stylesheet" href="css/loader.css"/>
+  <style>
+    #hero-ct {
+      padding-top: var(--nav-h);
+      min-height: 44vh;
+      display: flex; align-items: flex-end;
+      position: relative; overflow: hidden;
+      background: var(--d1);
+    }
+    .ct-hero-bg {
+      position: absolute; inset: 0;
+      background: url('images/reception.jpg') center/cover no-repeat;
+    }
+    .ct-hero-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(7,6,5,.82) 0%, rgba(7,6,5,.93) 100%);
+    }
+    .ct-hero-content {
+      position: relative; z-index: 1;
+      padding: 4rem 5%;
+      max-width: var(--max); margin: 0 auto; width: 100%;
+    }
+
+    /* ── MAIN GRID ── */
+    .ct-main {
+      display: grid; grid-template-columns: 1fr 1.3fr;
+      gap: 3rem; padding: 5rem 5%;
+      max-width: var(--max); margin: 0 auto;
+    }
+
+    /* Info cards */
+    .ct-cards { display: flex; flex-direction: column; gap: 1rem; }
+    .ct-card {
+      display: flex; gap: 1.2rem; align-items: flex-start;
+      padding: 1.8rem 2rem;
+      border: 1px solid var(--border);
+      background: var(--d2);
+      transition: border-color var(--t), transform var(--t);
+    }
+    .ct-card:hover { border-color: var(--border-s); transform: translateX(4px); }
+    .ct-icon {
+      width: 48px; height: 48px; flex-shrink: 0;
+      border: 1px solid var(--border-s);
+      background: rgba(201,168,76,.07);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .ct-icon svg { width: 20px; height: 20px; color: var(--g2); }
+    .ct-body h4 { font-family: var(--serif); font-size: 1.05rem; color: var(--g3); margin-bottom: .35rem; }
+    .ct-body p, .ct-body a { font-size: .84rem; color: var(--light); line-height: 1.75; }
+    .ct-body a:hover { color: var(--g2); }
+
+    /* Direct btns */
+    .ct-actions { display: flex; flex-direction: column; gap: .7rem; margin-top: 1.5rem; }
+
+    /* Form side */
+    .ct-form-wrap {}
+    .ct-form-wrap h3 { font-size: 1.8rem; margin-bottom: .5rem; }
+    .ct-form-wrap > p { font-size: .85rem; color: var(--muted); margin-bottom: 2rem; }
+    .ct-form { display: flex; flex-direction: column; gap: 1rem; }
+    .cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .cf-label { font-size: .58rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--g2); display: block; margin-bottom: .45rem; }
+    .cf-input {
+      width: 100%;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      padding: .9rem 1.15rem;
+      color: var(--cream); font-family: var(--sans); font-size: .84rem;
+      outline: none; transition: border-color var(--t);
+      -webkit-appearance: none;
+    }
+    .cf-input:focus { border-color: var(--g2); background: rgba(201,168,76,.03); }
+    .cf-input::placeholder { color: var(--muted); }
+    textarea.cf-input { resize: vertical; min-height: 130px; }
+
+    .cf-submit {
+      display: flex; align-items: center; justify-content: center; gap: .8rem;
+      width: 100%;
+      padding: 1.1rem;
+      background: #25D366; border: none; cursor: pointer;
+      color: #fff; font-family: var(--sans); font-size: .72rem;
+      font-weight: 800; letter-spacing: .15em; text-transform: uppercase;
+      transition: all var(--t);
+    }
+    .cf-submit:hover { background: #1da851; transform: translateY(-2px); box-shadow: 0 12px 40px rgba(37,211,102,.3); }
+    .cf-submit svg { width: 20px; height: 20px; }
+
+    /* Map section */
+    .map-section {
+      padding: 0 5% 5rem;
+      max-width: var(--max); margin: 0 auto;
+    }
+    .map-header { margin-bottom: 1.5rem; }
+    .map-header h3 { font-size: 1.6rem; margin-bottom: .4rem; }
+    .map-header p  { font-size: .84rem; color: var(--muted); }
+    .map-frame {
+      border: 1px solid var(--border);
+      height: 380px; overflow: hidden;
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--d2);
+    }
+    .map-placeholder {
+      text-align: center; padding: 3rem;
+    }
+    .map-placeholder svg { width: 48px; height: 48px; color: var(--g2); margin: 0 auto 1rem; display: block; }
+    .map-placeholder h4 { font-family: var(--serif); font-size: 1.4rem; margin-bottom: .5rem; }
+    .map-placeholder p  { font-size: .8rem; color: var(--muted); margin-bottom: 1.5rem; }
+
+    /* Photos grid */
+    .ct-photos {
+      padding: 5rem 5%;
+      background: var(--d1);
+    }
+    .ct-photos-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: .6rem; margin-top: 2.5rem;
+    }
+    .ct-photo { height: 180px; overflow: hidden; }
+    .ct-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+    .ct-photo:hover img { transform: scale(1.06); }
+
+    @media(max-width:900px){
+      .ct-main { grid-template-columns:1fr; gap:2rem; }
+      .cf-row  { grid-template-columns:1fr; }
+      .ct-photos-grid { grid-template-columns:1fr 1fr; }
+    }
+    @media(max-width:600px){
+      .ct-photos-grid { grid-template-columns:1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav scrolled" id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <img class="nav-logo-img" src="images/logo.png" alt="Marguo City" onerror="this.style.display='none'"/>
+    <div class="nav-logo-text">
+      <span class="main">Marguo City</span>
+      <span class="sub">Hôtel · Bar · Restaurant</span>
+    </div>
+  </a>
+  <ul class="nav-links" id="navLinks"></ul>
+  <div class="nav-right">
+    <div class="lang-sw">
+      <button data-l="fr" class="on">FR</button>
+      <button data-l="en">EN</button>
+    </div>
+    <a href="reservation.html" class="nav-book" id="navBookBtn">Réserver</a>
+  </div>
+  <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<nav class="mob-nav" id="mobNav"></nav>
+<div class="scrim" id="scrim"></div>
+
+<!-- HERO -->
+<div id="hero-ct">
+  <div class="ct-hero-bg"></div>
+  <div class="ct-hero-content">
+    <p class="eyebrow" data-t="pages.contact.eye">Nous trouver</p>
+    <h1 class="mt-sm" data-t="pages.contact.h1">Contact</h1>
+    <div class="divider"></div>
+    <p style="max-width:460px; color:var(--muted); font-size:.9rem;" data-t="pages.contact.sub">
+      Disponibles 24h/24 pour vous accueillir et répondre à vos questions.
+    </p>
+  </div>
+</div>
+
+<!-- MAIN CONTACT GRID -->
+<section style="background:var(--black);">
+  <div class="ct-main">
+
+    <!-- LEFT: Info cards -->
+    <div class="reveal">
+      <p class="eyebrow" style="margin-bottom:1.5rem;">Informations</p>
+      <div class="ct-cards">
+        <div class="ct-card">
+          <div class="ct-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0116 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="ct-body">
+            <h4 data-t="pages.contact.addr_title">Adresse</h4>
+            <p data-t="pages.contact.addr">Adidogomé Soviépé, non loin de l'École Primaire Soviépé, Lomé, Togo</p>
+          </div>
+        </div>
+        <div class="ct-card">
+          <div class="ct-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          </div>
+          <div class="ct-body">
+            <h4 data-t="pages.contact.phone_title">Téléphone</h4>
+            <a href="tel:+22899204638">+228 99 20 46 38</a>
+          </div>
+        </div>
+        <div class="ct-card">
+          <div class="ct-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.527 5.843L0 24l6.345-1.508A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.896 0-3.67-.52-5.19-1.427l-.37-.22-3.768.895.955-3.68-.24-.38A9.958 9.958 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+          </div>
+          <div class="ct-body">
+            <h4 data-t="pages.contact.wa_title">WhatsApp</h4>
+            <a href="https://wa.me/22899204638" target="_blank" rel="noopener">+228 99 20 46 38</a>
+          </div>
+        </div>
+        <div class="ct-card">
+          <div class="ct-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <div class="ct-body">
+            <h4 data-t="pages.contact.hours_title">Horaires</h4>
+            <p data-t="pages.contact.hours_val">Ouvert 24h/24 · 7 jours sur 7</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ct-actions">
+        <a href="https://wa.me/22899204638?text=Bonjour%20H%C3%B4tel%20Marguo%20City%2C%20j%27ai%20une%20question." target="_blank" rel="noopener" class="btn btn-wa">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.527 5.843L0 24l6.345-1.508A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.896 0-3.67-.52-5.19-1.427l-.37-.22-3.768.895.955-3.68-.24-.38A9.958 9.958 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+          <span data-t="pages.contact.write_wa">Écrire sur WhatsApp</span>
+        </a>
+        <a href="tel:+22899204638" class="btn btn-outline">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          Appeler directement
+        </a>
+        <a href="reservation.html" class="btn btn-gold">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          Réserver une chambre
+        </a>
+      </div>
+    </div>
+
+    <!-- RIGHT: Form -->
+    <div class="reveal delay-2">
+      <p class="eyebrow" style="margin-bottom:.6rem;">Message</p>
+      <h3 data-t="pages.contact.form_h3">Nous écrire</h3>
+      <div class="divider"></div>
+      <p style="color:var(--muted); font-size:.84rem; margin-bottom:2rem;">Votre message sera envoyé directement via WhatsApp pour une réponse rapide.</p>
+      <div class="ct-form" id="ctForm">
+        <div class="cf-row">
+          <div>
+            <label class="cf-label" for="cfName" data-t="pages.contact.form_name">Votre prénom</label>
+            <input class="cf-input" id="cfName" type="text" placeholder="Prénom…"/>
+          </div>
+          <div>
+            <label class="cf-label" for="cfPhone" data-t="pages.contact.form_phone">Votre téléphone</label>
+            <input class="cf-input" id="cfPhone" type="tel" placeholder="+228…"/>
+          </div>
+        </div>
+        <div>
+          <label class="cf-label" for="cfSubject">Objet</label>
+          <select class="cf-input" id="cfSubject">
+            <option value="">— Sélectionner —</option>
+            <option>Réservation chambre</option>
+            <option>Renseignements tarifs</option>
+            <option>Salle / Événement</option>
+            <option>Restaurant / Bar</option>
+            <option>Autre demande</option>
+          </select>
+        </div>
+        <div>
+          <label class="cf-label" for="cfMsg" data-t="pages.contact.form_msg">Votre message</label>
+          <textarea class="cf-input" id="cfMsg" placeholder="Décrivez votre demande…"></textarea>
+        </div>
+        <button class="cf-submit" id="cfSend">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.527 5.843L0 24l6.345-1.508A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.896 0-3.67-.52-5.19-1.427l-.37-.22-3.768.895.955-3.68-.24-.38A9.958 9.958 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+          <span data-t="pages.contact.form_send">Envoyer via WhatsApp</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section style="background:var(--black); padding-bottom:5rem;">
+  <div class="map-section reveal">
+    <div class="map-header">
+      <p class="eyebrow" style="margin-bottom:.5rem;">Localisation</p>
+      <h3>Nous trouver à Lomé</h3>
+      <p>Adidogomé Soviépé, non loin de l'École Primaire Soviépé</p>
+    </div>
+    <div class="map-frame">
+      <iframe
+        src="https://www.openstreetmap.org/export/embed.html?bbox=1.13,6.13,1.19,6.18&layer=mapnik"
+        style="width:100%;height:100%;border:none;"
+        title="Localisation Hôtel Marguo City Lomé"
+        loading="lazy"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <div class="mt-md">
+      <a href="https://www.google.com/maps/search/Adidogomé+Soviépé+Lomé+Togo" target="_blank" rel="noopener" class="btn btn-outline">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0116 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span data-t="pages.contact.map_btn">Voir sur Google Maps</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTOS -->
+<section class="ct-photos">
+  <div class="container">
+    <div class="text-center reveal">
+      <p class="eyebrow center">Galerie</p>
+      <h2 class="mt-sm">L'établissement</h2>
+      <div class="divider center"></div>
+    </div>
+    <div class="ct-photos-grid reveal">
+      <div class="ct-photo"><img src="images/hero.jpg"       alt="Façade"/></div>
+      <div class="ct-photo"><img src="images/reception.jpg"  alt="Réception"/></div>
+      <div class="ct-photo"><img src="images/salon.jpg"      alt="Salon"/></div>
+      <div class="ct-photo"><img src="images/cour.jpg"       alt="Cour"/></div>
+      <div class="ct-photo"><img src="images/chambre-a.jpg"  alt="Chambre"/></div>
+      <div class="ct-photo"><img src="images/restaurant.jpg" alt="Restaurant"/></div>
+      <div class="ct-photo"><img src="images/salle.jpg"      alt="Salle"/></div>
+      <div class="ct-photo"><img src="images/jardin.jpg"     alt="Jardin"/></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer><div id="footerInner"></div></footer>
+<script src="js/loader.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.getElementById('cfSend').addEventListener('click', () => {
+    const name    = document.getElementById('cfName').value.trim();
+    const phone   = document.getElementById('cfPhone').value.trim();
+    const subject = document.getElementById('cfSubject').value;
+    const msg     = document.getElementById('cfMsg').value.trim();
+    const text = [
+      '✉️ *Message — Hôtel Marguo City*',
+      '',
+      `👤 Prénom : ${name || 'Non précisé'}`,
+      `📞 Téléphone : ${phone || 'Non précisé'}`,
+      `📋 Objet : ${subject || 'Non précisé'}`,
+      `💬 Message : ${msg || 'Aucun'}`,
+    ].join('\n');
+    window.open(`https://wa.me/22899204638?text=${encodeURIComponent(text)}`, '_blank');
+  });
+</script>
+</body>
+</html>

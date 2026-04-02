@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Salle de conférence et espace événementiel à l'Hôtel Marguo City, Lomé. Jusqu'à 100 personnes, climatisation, système audio. Sur devis."/>
+  <meta property="og:title" content="Salle & Événements | Hôtel Marguo City"/>
+  <meta property="og:image" content="images/salle.jpg"/>
+  <title>Salle & Événements | Hôtel Marguo City</title>
+  <link rel="icon" type="image/png" href="images/logo.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/main.css"/>
+  <link rel="stylesheet" href="css/components.css"/>
+  <link rel="stylesheet" href="css/loader.css"/>
+  <style>
+    /* ── HERO ── */
+    #hero-ev {
+      padding-top: var(--nav-h);
+      min-height: 52vh;
+      display: flex; align-items: flex-end;
+      position: relative; overflow: hidden;
+    }
+    .ev-hero-bg {
+      position: absolute; inset: 0;
+      background: url('images/salle.jpg') center/cover no-repeat;
+    }
+    .ev-hero-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(7,6,5,.8) 0%, rgba(7,6,5,.93) 100%);
+    }
+    .ev-hero-content {
+      position: relative; z-index: 1;
+      padding: 4rem 5%;
+      max-width: var(--max); margin: 0 auto; width: 100%;
+    }
+
+    /* ── MAIN HALL ── */
+    .hall-showcase {
+      display: grid; grid-template-columns: 55% 1fr;
+      gap: 0; border: 1px solid var(--border); overflow: hidden;
+    }
+    .hall-photo-wrap { position: relative; overflow: hidden; }
+    .hall-photo-wrap img { width: 100%; height: 100%; min-height: 480px; object-fit: cover; }
+    .hall-photo-overlay {
+      position: absolute; bottom: 1.5rem; left: 1.5rem;
+      display: flex; gap: .6rem; flex-wrap: wrap;
+    }
+    .hall-badge {
+      padding: .4rem 1rem;
+      background: rgba(7,6,5,.85);
+      border: 1px solid var(--g2);
+      font-size: .58rem; font-weight: 800; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--g2);
+    }
+    .hall-info {
+      padding: 4rem 3rem;
+      background: var(--d2);
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .hall-info h3 { margin-bottom: 1rem; }
+    .hall-info > p { font-size: .86rem; margin-bottom: 2rem; }
+    .hall-features { display: flex; flex-direction: column; gap: .7rem; margin-bottom: 2.5rem; }
+    .hf-item {
+      display: flex; align-items: center; gap: .9rem;
+      padding: .7rem 1rem;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.02);
+      font-size: .82rem; color: var(--light);
+    }
+    .hf-item svg { width: 18px; height: 18px; color: var(--g2); flex-shrink: 0; }
+    .capacity-block {
+      padding: 1.4rem;
+      border: 1px solid var(--border-s);
+      background: rgba(201,168,76,.05);
+      text-align: center; margin-bottom: 2rem;
+    }
+    .capacity-block .cap-n {
+      font-family: var(--serif); font-size: 3rem; line-height: 1;
+      background: var(--gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      display: block;
+    }
+    .capacity-block .cap-l {
+      font-size: .6rem; font-weight: 800; letter-spacing: .24em;
+      text-transform: uppercase; color: var(--muted); display: block; margin-top: .3rem;
+    }
+
+    /* ── OUTDOOR ── */
+    .outdoor-split {
+      display: grid; grid-template-columns: 1fr 55%;
+      gap: 0; border: 1px solid var(--border); overflow: hidden; margin-top: 3rem;
+    }
+    .outdoor-info {
+      padding: 4rem 3rem;
+      background: var(--d2);
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .outdoor-photo { height: 420px; overflow: hidden; }
+    .outdoor-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+    .outdoor-photo:hover img { transform: scale(1.03); }
+
+    /* ── USE CASES ── */
+    .use-section { padding: 5rem 5%; background: var(--black); }
+    .use-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 3rem; }
+    .use-item { background: var(--d1); padding: 2.5rem 2rem; transition: background var(--t); }
+    .use-item:hover { background: rgba(201,168,76,.04); }
+    .use-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .use-item h4 { font-family: var(--serif); font-size: 1.2rem; margin-bottom: .5rem; }
+    .use-item p  { font-size: .8rem; color: var(--muted); line-height: 1.7; }
+
+    /* ── QUOTE FORM ── */
+    .quote-section { padding: 5rem 5%; background: var(--d1); }
+    .quote-inner {
+      max-width: 760px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;
+    }
+    .quote-left h3 { margin-bottom: 1rem; }
+    .quote-left p  { font-size: .86rem; color: var(--muted); margin-bottom: 2rem; }
+    .quote-contacts { display: flex; flex-direction: column; gap: .8rem; }
+    .qc-item {
+      display: flex; align-items: center; gap: .9rem;
+      padding: .9rem 1.1rem;
+      border: 1px solid var(--border);
+      background: var(--d2); font-size: .8rem;
+    }
+    .qc-item svg { width: 18px; height: 18px; color: var(--g2); flex-shrink: 0; }
+    .qc-item a { color: var(--cream); transition: color var(--t); }
+    .qc-item a:hover { color: var(--g2); }
+
+    .quote-form { display: flex; flex-direction: column; gap: .9rem; }
+    .qf-label { font-size: .6rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--g2); display: block; margin-bottom: .4rem; }
+    .qf-input {
+      width: 100%;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      padding: .85rem 1.1rem;
+      color: var(--cream); font-family: var(--sans); font-size: .84rem;
+      outline: none; transition: border-color var(--t);
+    }
+    .qf-input:focus { border-color: var(--g2); }
+    .qf-input::placeholder { color: var(--muted); }
+    textarea.qf-input { resize: vertical; min-height: 110px; }
+
+    @media(max-width:900px){
+      .hall-showcase { grid-template-columns:1fr; }
+      .hall-photo-wrap img { min-height:260px; }
+      .hall-info { padding:2.5rem 2rem; }
+      .outdoor-split { grid-template-columns:1fr; }
+      .outdoor-info { padding:2.5rem 2rem; order:1; }
+      .outdoor-photo { height:240px; order:0; }
+      .use-grid { grid-template-columns:1fr 1fr; }
+      .quote-inner { grid-template-columns:1fr; gap:2rem; }
+    }
+    @media(max-width:600px){
+      .use-grid { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav scrolled" id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <img class="nav-logo-img" src="images/logo.png" alt="Marguo City" onerror="this.style.display='none'"/>
+    <div class="nav-logo-text">
+      <span class="main">Marguo City</span>
+      <span class="sub">Hôtel · Bar · Restaurant</span>
+    </div>
+  </a>
+  <ul class="nav-links" id="navLinks"></ul>
+  <div class="nav-right">
+    <div class="lang-sw">
+      <button data-l="fr" class="on">FR</button>
+      <button data-l="en">EN</button>
+    </div>
+    <a href="reservation.html" class="nav-book" id="navBookBtn">Réserver</a>
+  </div>
+  <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<nav class="mob-nav" id="mobNav"></nav>
+<div class="scrim" id="scrim"></div>
+
+<!-- HERO -->
+<div id="hero-ev">
+  <div class="ev-hero-bg"></div>
+  <div class="ev-hero-content">
+    <p class="eyebrow" data-t="pages.events.eye">Espaces</p>
+    <h1 class="mt-sm" data-t="pages.events.h1">Salle &amp; Événements</h1>
+    <div class="divider"></div>
+    <p style="max-width:500px; color:var(--muted); font-size:.9rem;" data-t="pages.events.sub">
+      L'écrin idéal pour vos événements professionnels et privés.
+    </p>
+  </div>
+</div>
+
+<!-- HALL SHOWCASE -->
+<section style="background:var(--black); padding: 5rem 5%;">
+  <div class="container">
+    <div class="text-center reveal" style="margin-bottom:2.5rem;">
+      <p class="eyebrow center" data-t="pages.events.hall_eye">Salle de conférence</p>
+      <h2 class="mt-sm" data-t="pages.events.hall_h3">Espace climatisé &amp; ventilé</h2>
+      <div class="divider center"></div>
+    </div>
+    <div class="hall-showcase reveal">
+      <div class="hall-photo-wrap">
+        <img src="images/salle.jpg" alt="Salle de conférence Marguo City" onerror="this.src='images/hero.jpg'"/>
+        <div class="hall-photo-overlay">
+          <span class="hall-badge">Climatisation</span>
+          <span class="hall-badge">Audio Pro</span>
+          <span class="hall-badge">80 – 100 places</span>
+        </div>
+      </div>
+      <div class="hall-info">
+        <p class="eyebrow" data-t="pages.events.hall_eye">Salle de conférence</p>
+        <h3 class="mt-sm" data-t="pages.events.hall_h3">Espace climatisé &amp; ventilé</h3>
+        <div class="divider"></div>
+        <p data-t="pages.events.hall_p">Notre salle polyvalente accueille jusqu'à 100 personnes dans un cadre moderne doté d'un système audio professionnel.</p>
+
+        <div class="capacity-block">
+          <span class="cap-n">80 – 100</span>
+          <span class="cap-l" data-t="pages.events.capacity">Capacité · Personnes</span>
+        </div>
+
+        <div class="hall-features">
+          <div class="hf-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9.59 4.59A2 2 0 1111 8H2m10.59 11.41A2 2 0 1014 16H2m15.73-8.27A2.5 2.5 0 1119.5 12H2"/></svg>
+            Climatisation &amp; Ventilation
+          </div>
+          <div class="hf-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+            Système audio professionnel
+          </div>
+          <div class="hf-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            Vidéoprojecteur disponible
+          </div>
+          <div class="hf-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            Jusqu'à 100 personnes
+          </div>
+          <div class="hf-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+            Événements &amp; réceptions autorisés
+          </div>
+        </div>
+        <a href="https://wa.me/22899204638?text=Bonjour%2C%20je%20souhaite%20avoir%20un%20devis%20pour%20la%20salle%20de%20conférence." target="_blank" rel="noopener" class="btn btn-gold">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          Demander un devis
+        </a>
+      </div>
+    </div>
+
+    <!-- OUTDOOR -->
+    <div class="outdoor-split reveal">
+      <div class="outdoor-info">
+        <p class="eyebrow" data-t="pages.events.outdoor_eye">Espace extérieur</p>
+        <h3 class="mt-sm" data-t="pages.events.outdoor_h3">Réceptions en plein air</h3>
+        <div class="divider"></div>
+        <p data-t="pages.events.outdoor_p">Notre espace extérieur aéré et verdoyant offre un cadre naturel et élégant pour vos cocktails, cérémonies et réceptions privées.</p>
+        <div class="hall-features mt-md">
+          <div class="hf-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2a10 10 0 110 20A10 10 0 0112 2z"/><path d="M12 8v4l3 3"/></svg>
+            Espace aéré et verdoyant
+          </div>
+          <div class="hf-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            Idéal pour cocktails &amp; cérémonies
+          </div>
+          <div class="hf-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0116 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Cadre naturel unique à Lomé
+          </div>
+        </div>
+        <a href="https://wa.me/22899204638?text=Bonjour%2C%20je%20souhaite%20r%C3%A9server%20l%27espace%20ext%C3%A9rieur." target="_blank" rel="noopener" class="btn btn-outline mt-md">
+          Nous contacter
+        </a>
+      </div>
+      <div class="outdoor-photo">
+        <img src="images/cour.jpg" alt="Espace extérieur Marguo City" onerror="this.src='images/hero.jpg'"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- USE CASES -->
+<section class="use-section">
+  <div class="container">
+    <div class="text-center reveal">
+      <p class="eyebrow center">Idéal pour</p>
+      <h2 class="mt-sm">Tous types d'événements</h2>
+      <div class="divider center"></div>
+    </div>
+    <div class="use-grid reveal">
+      <div class="use-item">
+        <div class="use-icon">💼</div>
+        <h4>Réunions d'affaires</h4>
+        <p>Un cadre professionnel et discret pour vos rencontres clients, réunions d'équipe et négociations importantes.</p>
+      </div>
+      <div class="use-item">
+        <div class="use-icon">🎓</div>
+        <h4>Formations &amp; séminaires</h4>
+        <p>Salle équipée idéale pour les formations professionnelles, ateliers et séminaires de tout type.</p>
+      </div>
+      <div class="use-item">
+        <div class="use-icon">🎤</div>
+        <h4>Conférences</h4>
+        <p>Système audio professionnel et grande capacité pour vos conférences publiques et présentations.</p>
+      </div>
+      <div class="use-item">
+        <div class="use-icon">🎉</div>
+        <h4>Réceptions privées</h4>
+        <p>Anniversaires, fêtes et réceptions familiales dans un cadre élégant et convivial.</p>
+      </div>
+      <div class="use-item">
+        <div class="use-icon">🤝</div>
+        <h4>Événements associatifs</h4>
+        <p>Assemblées générales, congrès d'associations et réunions communautaires accueillis avec soin.</p>
+      </div>
+      <div class="use-item">
+        <div class="use-icon">🍽</div>
+        <h4>Dîners de gala</h4>
+        <p>Organisez vos dîners d'entreprise et galas avec l'appui de notre équipe de restauration.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE SECTION -->
+<section class="quote-section">
+  <div class="container">
+    <div class="text-center reveal" style="margin-bottom:3rem;">
+      <p class="eyebrow center" data-t="pages.events.quote_h3">Demander un devis</p>
+      <h2 class="mt-sm">Tarification sur mesure</h2>
+      <div class="divider center"></div>
+      <p style="max-width:500px; margin:0 auto;" data-t="pages.events.quote_p">
+        Les tarifs de nos espaces sont établis sur devis selon vos besoins, la durée et la configuration souhaitée.
+      </p>
+    </div>
+    <div class="quote-inner reveal">
+      <!-- Contacts -->
+      <div class="quote-left">
+        <p class="eyebrow">Nous joindre</p>
+        <h3 class="mt-sm">Contactez-nous directement</h3>
+        <div class="divider"></div>
+        <p>Notre équipe vous répond rapidement et prépare une offre adaptée à votre événement.</p>
+        <div class="quote-contacts mt-md">
+          <div class="qc-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+            <a href="tel:+22899204638">+228 99 20 46 38</a>
+          </div>
+          <div class="qc-item">
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.527 5.843L0 24l6.345-1.508A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.896 0-3.67-.52-5.19-1.427l-.37-.22-3.768.895.955-3.68-.24-.38A9.958 9.958 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            <a href="https://wa.me/22899204638" target="_blank" rel="noopener">WhatsApp : +228 99 20 46 38</a>
+          </div>
+          <div class="qc-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0116 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Adidogomé Soviépé, Lomé, Togo</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick WA form -->
+      <div>
+        <p class="eyebrow" style="margin-bottom:1.5rem;">Devis rapide</p>
+        <div class="quote-form" id="quoteForm">
+          <div>
+            <label class="qf-label" for="qfName">Votre nom</label>
+            <input class="qf-input" id="qfName" type="text" placeholder="Jean Dupont"/>
+          </div>
+          <div>
+            <label class="qf-label" for="qfPhone">Téléphone</label>
+            <input class="qf-input" id="qfPhone" type="tel" placeholder="+228…"/>
+          </div>
+          <div>
+            <label class="qf-label" for="qfEvent">Type d'événement</label>
+            <select class="qf-input" id="qfEvent">
+              <option value="">— Sélectionner —</option>
+              <option>Réunion d'affaires</option>
+              <option>Formation / Séminaire</option>
+              <option>Conférence</option>
+              <option>Réception privée</option>
+              <option>Dîner de gala</option>
+              <option>Autre</option>
+            </select>
+          </div>
+          <div>
+            <label class="qf-label" for="qfDate">Date souhaitée</label>
+            <input class="qf-input" id="qfDate" type="date"/>
+          </div>
+          <div>
+            <label class="qf-label" for="qfMsg">Message / précisions</label>
+            <textarea class="qf-input" id="qfMsg" placeholder="Nombre de personnes, durée, besoins spécifiques…"></textarea>
+          </div>
+          <button class="btn btn-wa" id="qfSend" style="width:100%;justify-content:center;">
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.527 5.843L0 24l6.345-1.508A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.896 0-3.67-.52-5.19-1.427l-.37-.22-3.768.895.955-3.68-.24-.38A9.958 9.958 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Envoyer via WhatsApp
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer><div id="footerInner"></div></footer>
+<script src="js/loader.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.getElementById('qfSend').addEventListener('click', () => {
+    const name  = document.getElementById('qfName').value.trim();
+    const phone = document.getElementById('qfPhone').value.trim();
+    const event = document.getElementById('qfEvent').value;
+    const date  = document.getElementById('qfDate').value;
+    const msg   = document.getElementById('qfMsg').value.trim();
+    const text = [
+      '📋 *Demande de devis — Salle Marguo City*',
+      '',
+      `👤 Nom : ${name || 'Non précisé'}`,
+      `📞 Téléphone : ${phone || 'Non précisé'}`,
+      `🎉 Événement : ${event || 'Non précisé'}`,
+      `📅 Date : ${date || 'Non précisée'}`,
+      `💬 Message : ${msg || 'Aucun'}`,
+    ].join('\n');
+    window.open(`https://wa.me/22899204638?text=${encodeURIComponent(text)}`, '_blank');
+  });
+</script>
+</body>
+</html>

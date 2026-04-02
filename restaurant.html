@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Restaurant & Bar de l'Hôtel Marguo City à Lomé. Cuisine authentique, repas de 1 000 à 4 500 FCFA, bières dès 500 FCFA. Ouvert 24h/24."/>
+  <meta property="og:title" content="Restaurant & Bar | Hôtel Marguo City"/>
+  <meta property="og:image" content="images/restaurant.jpg"/>
+  <title>Restaurant & Bar | Hôtel Marguo City</title>
+  <link rel="icon" type="image/png" href="images/logo.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/main.css"/>
+  <link rel="stylesheet" href="css/components.css"/>
+  <link rel="stylesheet" href="css/loader.css"/>
+  <style>
+    /* ── HERO ── */
+    #hero-rest {
+      padding-top: var(--nav-h);
+      min-height: 52vh;
+      display: flex; align-items: flex-end;
+      position: relative; overflow: hidden;
+    }
+    .rest-hero-bg {
+      position: absolute; inset: 0;
+      background: url('images/restaurant.jpg') center/cover no-repeat;
+    }
+    .rest-hero-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(7,6,5,.78) 0%, rgba(7,6,5,.92) 100%);
+    }
+    .rest-hero-content {
+      position: relative; z-index: 1;
+      padding: 4rem 5%;
+      max-width: var(--max); margin: 0 auto; width: 100%;
+    }
+
+    /* ── AMBIANCE GRID ── */
+    .ambiance-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 260px 200px;
+      gap: .6rem;
+      margin-bottom: 5rem;
+    }
+    .ag-item { overflow: hidden; }
+    .ag-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+    .ag-item:hover img { transform: scale(1.05); }
+    .ag-main { grid-column: 1 / 3; grid-row: 1 / 3; }
+    .ag-tr   { grid-column: 3; grid-row: 1; }
+    .ag-br   { grid-column: 3; grid-row: 2; }
+
+    /* ── MENU CARDS ── */
+    .menu-section { padding: 5rem 5%; background: var(--d1); }
+    .menu-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .menu-card {
+      background: var(--d2);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: border-color var(--t);
+    }
+    .menu-card:hover { border-color: var(--border-s); }
+    .menu-card-photo { height: 220px; overflow: hidden; }
+    .menu-card-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+    .menu-card:hover .menu-card-photo img { transform: scale(1.05); }
+    .menu-card-body { padding: 2rem 2.2rem; }
+    .menu-card-body h3 { margin-bottom: .8rem; }
+    .menu-card-body p { font-size: .84rem; color: var(--muted); margin-bottom: 1.5rem; }
+    .menu-price-badge {
+      display: inline-flex; align-items: baseline; gap: .4rem;
+      padding: .6rem 1.2rem;
+      border: 1px solid var(--border-s);
+      background: rgba(201,168,76,.05);
+    }
+    .menu-price-badge .val {
+      font-family: var(--serif); font-size: 1.4rem;
+      background: var(--gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .menu-price-badge .unit { font-size: .62rem; color: var(--muted); letter-spacing: .1em; }
+
+    /* ── CATEGORY CHIPS ── */
+    .cat-row { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0 1.5rem; }
+    .cat-chip {
+      font-size: .6rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+      padding: .3rem .8rem; border: 1px solid var(--border); color: var(--muted);
+    }
+
+    /* ── SPECIALTIES ── */
+    .spec-section { padding: 5rem 5%; background: var(--black); }
+    .spec-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 3rem; }
+    .spec-item { background: var(--d1); padding: 2rem 1.8rem; transition: background var(--t); }
+    .spec-item:hover { background: rgba(201,168,76,.04); }
+    .spec-icon { margin-bottom: 1rem; font-size: 1.5rem; }
+    .spec-item h4 { font-family: var(--serif); font-size: 1.15rem; margin-bottom: .4rem; }
+    .spec-item p  { font-size: .78rem; color: var(--muted); line-height: 1.7; }
+
+    /* ── BAR SECTION ── */
+    .bar-section { padding: 5rem 5%; background: var(--d1); }
+    .bar-split {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0; border: 1px solid var(--border); overflow: hidden;
+      margin-top: 3rem;
+    }
+    .bar-photo { height: 420px; overflow: hidden; }
+    .bar-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .bar-body {
+      padding: 4rem 3.5rem;
+      background: var(--d2);
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .bar-body h3 { margin-bottom: 1rem; }
+    .bar-body > p { font-size: .86rem; margin-bottom: 2rem; }
+    .drink-list { display: flex; flex-direction: column; gap: .6rem; margin-bottom: 2rem; }
+    .drink-item {
+      display: flex; justify-content: space-between;
+      padding: .75rem 1.1rem;
+      border: 1px solid var(--border); background: rgba(255,255,255,.02);
+      font-size: .82rem;
+    }
+    .drink-val {
+      font-family: var(--serif); font-size: 1rem;
+      background: var(--gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    /* ── HOURS BAND ── */
+    .hours-band {
+      padding: 3.5rem 5%;
+      background: var(--black);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .hours-inner {
+      max-width: var(--max); margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 2rem; flex-wrap: wrap;
+    }
+    .hours-left h3 { font-size: 1.8rem; margin-bottom: .4rem; }
+    .hours-left p  { color: var(--muted); font-size: .86rem; }
+    .hours-badge {
+      display: flex; align-items: center; gap: .8rem;
+      padding: 1.2rem 2rem;
+      border: 1px solid var(--border-s);
+      background: rgba(201,168,76,.06);
+    }
+    .hours-badge-dot { width: 10px; height: 10px; border-radius: 50%; background: #25D366; animation: pulse2 2s ease infinite; }
+    @keyframes pulse2 { 0%,100%{opacity:1;} 50%{opacity:.3;} }
+    .hours-badge-text .top { font-family: var(--serif); font-size: 1.3rem; }
+    .hours-badge-text .bot { font-size: .6rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+
+    @media(max-width:900px){
+      .ambiance-grid { grid-template-columns:1fr 1fr; grid-template-rows:220px 180px; }
+      .ag-main { grid-column:1/3; grid-row:1; }
+      .ag-tr { grid-column:1; grid-row:2; }
+      .ag-br { grid-column:2; grid-row:2; }
+      .menu-grid { grid-template-columns:1fr; }
+      .spec-grid { grid-template-columns:1fr 1fr; }
+      .bar-split { grid-template-columns:1fr; }
+      .bar-photo { height:260px; }
+      .bar-body  { padding:2.5rem 2rem; }
+      .hours-inner { flex-direction:column; text-align:center; }
+    }
+    @media(max-width:600px){
+      .spec-grid { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav scrolled" id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <img class="nav-logo-img" src="images/logo.png" alt="Marguo City" onerror="this.style.display='none'"/>
+    <div class="nav-logo-text">
+      <span class="main">Marguo City</span>
+      <span class="sub">Hôtel · Bar · Restaurant</span>
+    </div>
+  </a>
+  <ul class="nav-links" id="navLinks"></ul>
+  <div class="nav-right">
+    <div class="lang-sw">
+      <button data-l="fr" class="on">FR</button>
+      <button data-l="en">EN</button>
+    </div>
+    <a href="reservation.html" class="nav-book" id="navBookBtn">Réserver</a>
+  </div>
+  <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<nav class="mob-nav" id="mobNav"></nav>
+<div class="scrim" id="scrim"></div>
+
+<!-- HERO -->
+<div id="hero-rest">
+  <div class="rest-hero-bg"></div>
+  <div class="rest-hero-content">
+    <p class="eyebrow" data-t="pages.restaurant.eye">Gastronomie</p>
+    <h1 class="mt-sm" data-t="pages.restaurant.h1">Restaurant &amp; Bar</h1>
+    <div class="divider"></div>
+    <p style="max-width:460px; color:var(--muted); font-size:.9rem;" data-t="pages.restaurant.sub">
+      Saveurs authentiques et ambiance raffinée, ouverts 24h/24.
+    </p>
+  </div>
+</div>
+
+<!-- AMBIANCE GRID -->
+<section style="background:var(--black); padding: 4rem 5%;">
+  <div class="container">
+    <div class="text-center reveal" style="margin-bottom:2.5rem;">
+      <p class="eyebrow center">L'ambiance</p>
+      <h2 class="mt-sm">Un cadre chaleureux et convivial</h2>
+      <div class="divider center"></div>
+    </div>
+    <div class="ambiance-grid reveal">
+      <div class="ag-item ag-main">
+        <img src="images/restaurant.jpg" alt="Salle du restaurant" onerror="this.src='images/hero.jpg'"/>
+      </div>
+      <div class="ag-item ag-tr">
+        <img src="images/jardin.jpg" alt="Terrasse" onerror="this.src='images/hero.jpg'"/>
+      </div>
+      <div class="ag-item ag-br">
+        <img src="images/cour2.jpg" alt="Espace extérieur" onerror="this.src='images/hero.jpg'"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU CARDS -->
+<section class="menu-section">
+  <div class="container">
+    <div class="text-center reveal">
+      <p class="eyebrow center" data-t="pages.restaurant.rest_eye">Notre cuisine</p>
+      <h2 class="mt-sm" data-t="pages.restaurant.rest_h3">Le Restaurant</h2>
+      <div class="divider center"></div>
+      <p style="max-width:540px; margin:0 auto;" data-t="pages.restaurant.rest_p">
+        Une cuisine variée, préparée avec soin. Du petit-déjeuner au dîner, nos repas sont servis à des tarifs accessibles.
+      </p>
+    </div>
+
+    <div class="menu-grid">
+      <!-- Card Repas -->
+      <div class="menu-card reveal">
+        <div class="menu-card-photo">
+          <img src="images/restaurant.jpg" alt="Repas du restaurant" onerror="this.src='images/hero.jpg'"/>
+        </div>
+        <div class="menu-card-body">
+          <p class="eyebrow" style="margin-bottom:.6rem;">Cuisine</p>
+          <h3>Repas &amp; Plats</h3>
+          <div class="cat-row">
+            <span class="cat-chip">Petit-déjeuner</span>
+            <span class="cat-chip">Déjeuner</span>
+            <span class="cat-chip">Dîner</span>
+            <span class="cat-chip">Cuisine locale</span>
+          </div>
+          <p>Retrouvez une sélection de plats locaux et variés, cuisinés avec des produits frais. Idéal pour toutes les occasions.</p>
+          <div class="menu-price-badge mt-md">
+            <span class="val">1 000 – 4 500</span>
+            <span class="unit">FCFA / repas</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card Boissons -->
+      <div class="menu-card reveal delay-2">
+        <div class="menu-card-photo">
+          <img src="images/cour.jpg" alt="Bar Marguo City" onerror="this.src='images/hero.jpg'"/>
+        </div>
+        <div class="menu-card-body">
+          <p class="eyebrow" style="margin-bottom:.6rem;">Boissons</p>
+          <h3>Bar &amp; Boissons</h3>
+          <div class="cat-row">
+            <span class="cat-chip">Bières locales</span>
+            <span class="cat-chip">Bières importées</span>
+            <span class="cat-chip">Soft drinks</span>
+            <span class="cat-chip">Eau</span>
+          </div>
+          <p>Une large sélection de boissons fraîches et variées pour accompagner vos repas ou simplement vous désaltérer.</p>
+          <div class="menu-price-badge mt-md">
+            <span class="val">500 – 1 000</span>
+            <span class="unit">FCFA / bière</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECIALTIES -->
+<section class="spec-section">
+  <div class="container">
+    <div class="text-center reveal">
+      <p class="eyebrow center">Nos points forts</p>
+      <h2 class="mt-sm">Pourquoi nous choisir</h2>
+      <div class="divider center"></div>
+    </div>
+    <div class="spec-grid reveal">
+      <div class="spec-item">
+        <div class="spec-icon">🍽</div>
+        <h4>Cuisine authentique</h4>
+        <p>Des saveurs locales et variées préparées avec des produits frais du marché, tous les jours.</p>
+      </div>
+      <div class="spec-item">
+        <div class="spec-icon">💰</div>
+        <h4>Prix accessibles</h4>
+        <p>Des tarifs pensés pour tous. Repas à partir de 1 000 FCFA, bières dès 500 FCFA.</p>
+      </div>
+      <div class="spec-item">
+        <div class="spec-icon">🕐</div>
+        <h4>Ouvert 24h/24</h4>
+        <p>Le restaurant et le bar sont disponibles à toute heure, 7 jours sur 7, pour vous servir.</p>
+      </div>
+      <div class="spec-item">
+        <div class="spec-icon">🌿</div>
+        <h4>Cadre verdoyant</h4>
+        <p>Profitez de notre espace extérieur fleuri pour déjeuner ou dîner dans une ambiance apaisante.</p>
+      </div>
+      <div class="spec-item">
+        <div class="spec-icon">👨‍🍳</div>
+        <h4>Service attentionné</h4>
+        <p>Une équipe chaleureuse et professionnelle à votre service pour rendre votre repas mémorable.</p>
+      </div>
+      <div class="spec-item">
+        <div class="spec-icon">🤝</div>
+        <h4>Idéal pour groupes</h4>
+        <p>Notre salle peut accueillir des repas de groupe, déjeuners d'affaires et événements conviviaux.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BAR SECTION -->
+<section class="bar-section">
+  <div class="container">
+    <div class="bar-split reveal">
+      <div class="bar-photo">
+        <img src="images/restaurant.jpg" alt="Bar Marguo City" onerror="this.src='images/hero.jpg'"/>
+      </div>
+      <div class="bar-body">
+        <p class="eyebrow" data-t="pages.restaurant.bar_eye">Nos boissons</p>
+        <h3 class="mt-sm" data-t="pages.restaurant.bar_h3">Le Bar</h3>
+        <div class="divider"></div>
+        <p data-t="pages.restaurant.bar_p">Un large choix de bières locales et importées, disponibles à toute heure dans une ambiance détendue.</p>
+        <div class="drink-list mt-md">
+          <div class="drink-item">
+            <span>🍺 Bières locales</span>
+            <span class="drink-val">dès 500 FCFA</span>
+          </div>
+          <div class="drink-item">
+            <span>🍻 Bières importées</span>
+            <span class="drink-val">dès 800 FCFA</span>
+          </div>
+          <div class="drink-item">
+            <span>🥤 Soft drinks</span>
+            <span class="drink-val">sur demande</span>
+          </div>
+          <div class="drink-item">
+            <span>💧 Eau &amp; jus</span>
+            <span class="drink-val">sur demande</span>
+          </div>
+        </div>
+        <a href="https://wa.me/22899204638?text=Bonjour%2C%20je%20souhaite%20avoir%20plus%20d%27informations%20sur%20le%20restaurant%20et%20le%20bar." target="_blank" rel="noopener" class="btn btn-wa">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="width:17px;height:17px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.527 5.843L0 24l6.345-1.508A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.896 0-3.67-.52-5.19-1.427l-.37-.22-3.768.895.955-3.68-.24-.38A9.958 9.958 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+          Nous contacter
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOURS BAND -->
+<div class="hours-band reveal">
+  <div class="hours-inner">
+    <div class="hours-left">
+      <h3>Restaurant <span class="gold-text">&amp; Bar</span></h3>
+      <p>Adidogomé Soviépé, Lomé, Togo · +228 99 20 46 38</p>
+    </div>
+    <div class="hours-badge">
+      <div class="hours-badge-dot"></div>
+      <div class="hours-badge-text">
+        <div class="top">Ouvert 24h/24</div>
+        <div class="bot">7 jours sur 7 · Toujours disponible</div>
+      </div>
+    </div>
+    <a href="reservation.html" class="btn btn-gold">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+      Réserver une chambre
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer><div id="footerInner"></div></footer>
+<script src="js/loader.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

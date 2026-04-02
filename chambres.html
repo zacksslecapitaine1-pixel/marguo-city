@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Chambres de l'Hôtel Marguo City à Lomé : climatisées et ventilées, avec WiFi, lit 3 places. Tarifs nuit et repos disponibles."/>
+  <meta property="og:title" content="Chambres | Hôtel Marguo City"/>
+  <meta property="og:image" content="images/chambre-a.jpg"/>
+  <title>Chambres | Hôtel Marguo City</title>
+  <link rel="icon" type="image/png" href="images/logo.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/main.css"/>
+  <link rel="stylesheet" href="css/components.css"/>
+  <link rel="stylesheet" href="css/loader.css"/>
+  <style>
+    #hero-ch {
+      padding-top: var(--nav-h);
+      min-height: 48vh;
+      display: flex; align-items: flex-end;
+      position: relative; overflow: hidden;
+    }
+    .ch-hero-bg {
+      position: absolute; inset: 0;
+      background: url('images/couloir.jpg') center/cover no-repeat;
+    }
+    .ch-hero-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(7,6,5,.82) 0%, rgba(7,6,5,.9) 100%);
+    }
+    .ch-hero-content {
+      position: relative; z-index: 1;
+      padding: 4rem 5%;
+      max-width: var(--max); margin: 0 auto; width: 100%;
+    }
+
+    /* Filter bar */
+    .filter-bar {
+      display: flex; gap: .5rem; flex-wrap: wrap;
+      padding: 0 5% 3rem;
+      max-width: var(--max); margin: 0 auto;
+    }
+    .filter-btn {
+      padding: .5rem 1.4rem;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-family: var(--sans); font-size: .64rem;
+      font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+      cursor: pointer; transition: all var(--t);
+    }
+    .filter-btn:hover, .filter-btn.on {
+      border-color: var(--g2); color: var(--g2);
+      background: rgba(201,168,76,.06);
+    }
+
+    /* Big rooms grid */
+    .rooms-main {
+      padding: 0 5% 6rem;
+      max-width: var(--max); margin: 0 auto;
+    }
+    .rooms-main .rooms-grid { margin-top: 0; }
+
+    /* Room card extended */
+    .rc-gallery {
+      display: flex; gap: .4rem;
+      padding: .5rem .5rem 0;
+    }
+    .rc-gallery-thumb {
+      flex: 1; height: 52px; overflow: hidden; cursor: pointer;
+    }
+    .rc-gallery-thumb img {
+      width: 100%; height: 100%; object-fit: cover;
+      opacity: .6; transition: opacity .3s, transform .3s;
+    }
+    .rc-gallery-thumb:hover img, .rc-gallery-thumb.on img {
+      opacity: 1; transform: scale(1.05);
+    }
+
+    /* Info policy band */
+    .policy-band {
+      margin: 4rem 5% 0;
+      max-width: var(--max); margin-left: auto; margin-right: auto;
+      display: grid; grid-template-columns: repeat(4,1fr);
+      border: 1px solid var(--border); overflow: hidden;
+    }
+    .pol-cell {
+      padding: 2rem 1.8rem;
+      border-right: 1px solid var(--border);
+      background: var(--d2);
+    }
+    .pol-cell:last-child { border-right: none; }
+    .pol-cell svg { width: 26px; height: 26px; color: var(--g2); margin-bottom: 1rem; }
+    .pol-cell h4 { font-family: var(--serif); font-size: 1rem; margin-bottom: .4rem; }
+    .pol-cell p  { font-size: .75rem; color: var(--muted); line-height: 1.7; }
+    .pol-cell .val { color: var(--g3); font-size: .82rem; font-weight: 600; }
+
+    @media(max-width:900px){
+      .policy-band { grid-template-columns: 1fr 1fr; }
+      .pol-cell:nth-child(2) { border-right: none; }
+      .pol-cell:nth-child(3) { border-right: 1px solid var(--border); }
+    }
+    @media(max-width:600px){
+      .policy-band { grid-template-columns: 1fr; }
+      .pol-cell { border-right: none; border-bottom: 1px solid var(--border); }
+      .pol-cell:last-child { border-bottom: none; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Hotel",
+    "name": "Hôtel Marguo City",
+    "address": {"@type": "PostalAddress", "addressLocality": "Lomé", "addressCountry": "TG"},
+    "telephone": "+22899204638"
+  }
+  </script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav scrolled" id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <img class="nav-logo-img" src="images/logo.png" alt="Marguo City" onerror="this.style.display='none'"/>
+    <div class="nav-logo-text">
+      <span class="main">Marguo City</span>
+      <span class="sub">Hôtel · Bar · Restaurant</span>
+    </div>
+  </a>
+  <ul class="nav-links" id="navLinks"></ul>
+  <div class="nav-right">
+    <div class="lang-sw">
+      <button data-l="fr" class="on">FR</button>
+      <button data-l="en">EN</button>
+    </div>
+    <a href="reservation.html" class="nav-book" id="navBookBtn">Réserver</a>
+  </div>
+  <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<nav class="mob-nav" id="mobNav"></nav>
+<div class="scrim" id="scrim"></div>
+
+<!-- HERO -->
+<div id="hero-ch">
+  <div class="ch-hero-bg"></div>
+  <div class="ch-hero-content">
+    <p class="eyebrow" data-t="pages.rooms.eye">Hébergement</p>
+    <h1 class="mt-sm" data-t="pages.rooms.h1">Nos chambres</h1>
+    <div class="divider"></div>
+    <p style="max-width:480px; color:var(--muted); font-size:.9rem;" data-t="pages.rooms.sub">
+      Chaque chambre est un refuge de sérénité — bienvenue dans votre espace.
+    </p>
+  </div>
+</div>
+
+<!-- FILTER BAR -->
+<div style="background:var(--d1); border-bottom:1px solid var(--border); padding-top:2rem;">
+  <div class="filter-bar">
+    <button class="filter-btn on" data-filter="all">Toutes</button>
+    <button class="filter-btn" data-filter="clim">Climatisées</button>
+    <button class="filter-btn" data-filter="vent">Ventilées</button>
+  </div>
+</div>
+
+<!-- ROOMS GRID -->
+<section style="background:var(--black); padding-top:3.5rem;">
+  <div class="rooms-main">
+    <div class="rooms-grid" id="roomsGrid">
+
+      <!-- ── CARD 1: Climatisée Premium ── -->
+      <div class="room-card reveal" data-cat="clim">
+        <div class="room-card-photo">
+          <img src="images/chambre-a.jpg" alt="Chambre Climatisée Premium" onerror="this.src='images/hero.jpg'"/>
+          <span class="room-card-type">PREMIUM</span>
+        </div>
+        <div class="room-card-body">
+          <h3 class="gold-text">Climatisée Premium</h3>
+          <p>Notre chambre la plus complète. Climatisation puissante, chauffe-eau, mini frigo et placard — tout pour un séjour parfait.</p>
+          <div class="amenity-row">
+            <span class="amenity-tag">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.59 4.59A2 2 0 1111 8H2m10.59 11.41A2 2 0 1014 16H2m15.73-8.27A2.5 2.5 0 1119.5 12H2"/></svg>
+              Climatisation
+            </span>
+            <span class="amenity-tag">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+              Lit 3 places
+            </span>
+            <span class="amenity-tag">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M15 22v-4a2 2 0 00-2-2h-2a2 2 0 00-2 2v4"/></svg>
+              Mini frigo
+            </span>
+            <span class="amenity-tag">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="16" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              Placard
+            </span>
+            <span class="amenity-tag">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 110 20A10 10 0 0112 2zm0 5v7l4 2"/></svg>
+              Chauffe-eau
+            </span>
+            <span class="amenity-tag">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0114.08 0M1.42 9a16 16 0 0121.16 0M8.53 16.11a6 6 0 016.95 0M12 20h.01"/></svg>
+              WiFi
+            </span>
+          </div>
+          <div class="room-pricing">
+            <div class="price-main-row">
+              <span class="price-main-val">15 000 FCFA</span>
+              <span class="price-main-unit">/ nuit</span>
+            </div>
+            <div class="price-repos-label">Tarifs repos</div>
+            <div class="price-repos-grid">
+              <span class="price-chip">1h — <span>3 000</span> FCFA</span>
+              <span class="price-chip">2h — <span>5 000</span> FCFA</span>
+              <span class="price-chip">3h-4h — <span>8 000</span> FCFA</span>
+            </div>
+          </div>
+        </div>
+        <div class="room-card-foot">
+          <a href="reservation.html?room=clim-premium" class="btn btn-gold" style="width:100%;justify-content:center;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            Réserver cette chambre
+          </a>
+        </div>
+      </div>
+
+      <!-- ── CARD 2: Climatisée Confort ── -->
+      <div class="room-card reveal delay-1" data-cat="clim">
+        <div class="room-card-photo">
+          <img src="images/chambre-b.jpg" alt="Chambre Climatisée Confort" onerror="this.src='images/hero.jpg'"/>
+          <span class="room-card-type">CONFORT</span>
+        </div>
+        <div class="room-card-body">
+          <h3>Climatisée Confort</h3>
+          <p>Chambre climatisée avec mini frigo ou placard selon disponibilité. WiFi inclus pour un séjour connecté.</p>
+          <div class="amenity-row">
+            <span class="amenity-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.59 4.59A2 2 0 1111 8H2m10.59 11.41A2 2 0 1014 16H2m15.73-8.27A2.5 2.5 0 1119.5 12H2"/></svg> Climatisation</span>
+            <span class="amenity-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg> Lit 3 places</span>
+            <span class="amenity-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/></svg> Mini frigo</span>
+            <span class="amenity-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0114.08 0M1.42 9a16 16 0 0121.16 0M8.53 16.11a6 6 0 016.95 0M12 20h.01"/></svg> WiFi</span>
+          </div>
+          <div class="room-pricing">
+            <div class="price-main-row">
+              <span class="price-main-val">12 000 FCFA</span>
+              <span class="price-main-unit">/ nuit</span>
+            </div>
+            <div class="price-repos-label">Tarifs repos</div>
+            <div class="price-repos-grid">
+              <span class="price-chip">1h — <span>3 000</span> FCFA</span>
+              <span class="price-chip">2h — <span>5 000</span> FCFA</span>
+              <span class="price-chip">3h-4h — <span>8 000</span> FCFA</span>
+            </div>
+          </div>
+        </div>
+        <div class="room-card-foot">
+          <a href="reservation.html?room=clim-confort" class="btn btn-gold" style="width:100%;justify-content:center;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            Réserver cette chambre
+          </a>
+        </div>
+      </div>
+
+      <!-- ── CARD 3: Climatisée Standard ── -->
+      <div class="room-card reveal delay-2" data-cat="clim">
+        <div class="room-card-photo">
+          <img src="images/chambre-d.jpg" alt="Chambre Climatisée Standard" onerror="this.src='images/hero.jpg'"/>
+          <span class="room-card-type">STANDARD</span>
+        </div>
+        <div class="room-card-body">
+          <h3>Climatisée Standard</h3>
+          <p>L'essentiel du confort : climatisation et WiFi pour un séjour agréable à petit budget.</p>
+          <div class="amenity-row">
+            <span class="amenity-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.59 4.59A2 2 0 1111 8H2m10.59 11.41A2 2 0 1014 16H2m15.73-8.27A2.5 2.5 0 1119.5 12H2"/></svg> Climatisation</span>
+            <span class="amenity-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg> Lit 3 places</span>
+            <span class="amenity-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0114.08 0M1.42 9a16 16 0 0121.16 0M8.53 16.11a6 6 0 016.95 0M12 20h.01"/></svg> WiFi</span>
+          </div>
+          <div class="room-pricing">
+            <div class="price-main-row">
+              <span class="price-main-val">10 000 FCFA</span>
+              <span class="price-main-unit">/ nuit</span>
+            </div>
+            <div class="price-repos-label">Tarifs repos</div>
+            <div class="price-repos-grid">
+              <span class="price-chip">1h — <span>3 000</span> FCFA</span>
+              <span class="price-chip">2h — <span>5 000</span> FCFA</span>
+              <span class="price-chip">3h-4h — <span>8 000</span> FCFA</span>
+            </div>
+          </div>
+        </div>
+        <div class="room-card-foot">
+          <a href="reservation.html?room=clim-standard" class="btn btn-gold" style="width:100%;justify-content:center;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            Réserver cette chambre
+          </a>
+        </div>
+      </div>
+
+      <!-- ── CARD 4: Ventilée Confort ── -->
+      <div class="room-card reveal" data-cat="vent">
+        <div class="room-card-photo">
+          <img src="images/chambre-c.jpg" alt="Chambre Ventilée Confort" onerror="this.src='images/hero.jpg'"/>
+          <span class="room-card-type" style="border-color:var(--muted);color:var(--muted);">VENTILÉE</span>
+        </div>
+        <div class="room-card-body">
+          <h3>Ventilée Confort</h3>
+          <p>Chambre ventilée avec placard et chauffe-eau. Un bon rapport qualité-prix dans une ambiance naturelle.</p>
+          <div class="amenity-row">
+            <span class="amenity-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 002 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg> Ventilateur</span>
+            <span class="amenity-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg> Lit 3 places</span>
+            <span class="amenity-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="16" rx="2"/></svg> Placard</span>
+            <span class="amenity-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 110 20A10 10 0 0112 2zm0 5v7l4 2"/></svg> Chauffe-eau</span>
+            <span class="amenity-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0114.08 0M1.42 9a16 16 0 0121.16 0M8.53 16.11a6 6 0 016.95 0M12 20h.01"/></svg> WiFi</span>
+          </div>
+          <div class="room-pricing">
+            <div class="price-main-row">
+              <span class="price-main-val">10 000 FCFA</span>
+              <span class="price-main-unit">/ nuit</span>
+            </div>
+            <div class="price-repos-label">Tarifs repos</div>
+            <div class="price-repos-grid">
+              <span class="price-chip">1h — <span>2 500</span> FCFA</span>
+              <span class="price-chip">2h-3h — <span>5 000</span> FCFA</span>
+              <span class="price-chip">4h — <span>6 000</span> FCFA</span>
+            </div>
+          </div>
+        </div>
+        <div class="room-card-foot">
+          <a href="reservation.html?room=vent-confort" class="btn btn-gold" style="width:100%;justify-content:center;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            Réserver cette chambre
+          </a>
+        </div>
+      </div>
+
+      <!-- ── CARD 5: Ventilée Standard ── -->
+      <div class="room-card reveal delay-1" data-cat="vent">
+        <div class="room-card-photo">
+          <img src="images/chambre-a.jpg" alt="Chambre Ventilée Standard" onerror="this.src='images/hero.jpg'"/>
+          <span class="room-card-type" style="border-color:var(--muted);color:var(--muted);">STANDARD</span>
+        </div>
+        <div class="room-card-body">
+          <h3>Ventilée Standard</h3>
+          <p>Simple et fonctionnelle. Ventilateur, placard et WiFi — l'idéal pour un séjour économique.</p>
+          <div class="amenity-row">
+            <span class="amenity-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 002 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg> Ventilateur</span>
+            <span class="amenity-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg> Lit 3 places</span>
+            <span class="amenity-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="16" rx="2"/></svg> Placard</span>
+            <span class="amenity-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0114.08 0M1.42 9a16 16 0 0121.16 0M8.53 16.11a6 6 0 016.95 0M12 20h.01"/></svg> WiFi</span>
+          </div>
+          <div class="room-pricing">
+            <div class="price-main-row">
+              <span class="price-main-val">8 000 FCFA</span>
+              <span class="price-main-unit">/ nuit</span>
+            </div>
+            <div class="price-repos-label">Tarifs repos</div>
+            <div class="price-repos-grid">
+              <span class="price-chip">1h — <span>2 500</span> FCFA</span>
+              <span class="price-chip">2h-3h — <span>5 000</span> FCFA</span>
+              <span class="price-chip">4h — <span>6 000</span> FCFA</span>
+            </div>
+          </div>
+        </div>
+        <div class="room-card-foot">
+          <a href="reservation.html?room=vent-standard" class="btn btn-gold" style="width:100%;justify-content:center;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            Réserver cette chambre
+          </a>
+        </div>
+      </div>
+
+    </div><!-- /rooms-grid -->
+  </div><!-- /rooms-main -->
+</section>
+
+<!-- ══ POLICY BAND ════════════════════════════════════════════════ -->
+<section style="background:var(--d1); padding: 4rem 5%;">
+  <div class="policy-band reveal" style="margin:0 auto;">
+    <div class="pol-cell">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      <h4>Check-in / Check-out</h4>
+      <p class="val">24h/24 — 7j/7</p>
+      <p>Arrivée et départ sans contrainte horaire.</p>
+    </div>
+    <div class="pol-cell">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <h4>Annulation</h4>
+      <p class="val">72h avant l'arrivée</p>
+      <p>Pénalité de 10% au-delà de ce délai.</p>
+    </div>
+    <div class="pol-cell">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+      <h4>Acompte</h4>
+      <p class="val">50% du montant</p>
+      <p>Requis pour confirmer toute réservation.</p>
+    </div>
+    <div class="pol-cell">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+      <h4>Enfants</h4>
+      <p class="val">Tarif adulte dès 10 ans</p>
+      <p>Moins de 10 ans : tarif à définir ensemble.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ═══════════════════════════════════════════════════════ -->
+<div class="cta-banner reveal">
+  <div class="cta-banner-content">
+    <p class="eyebrow center" style="margin-bottom:1rem;">Réservation</p>
+    <h2>Prêt à réserver ?</h2>
+    <div class="divider center"></div>
+    <p>Notre assistant de réservation est disponible 24h/24. Réservez votre chambre en quelques minutes.</p>
+    <div class="gap-btns" style="justify-content:center; margin-top:2rem;">
+      <a href="reservation.html" class="btn btn-gold">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        Réserver maintenant
+      </a>
+      <a href="https://wa.me/22899204638" target="_blank" rel="noopener" class="btn btn-wa">
+        <svg viewBox="0 0 24 24" fill="currentColor" style="width:17px;height:17px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.527 5.843L0 24l6.345-1.508A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.896 0-3.67-.52-5.19-1.427l-.37-.22-3.768.895.955-3.68-.24-.38A9.958 9.958 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        WhatsApp direct
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer><div id="footerInner"></div></footer>
+
+<script src="js/loader.js"></script>
+<script src="js/main.js"></script>
+<script>
+  // Filter logic
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('on'));
+      btn.classList.add('on');
+      const f = btn.dataset.filter;
+      document.querySelectorAll('.room-card').forEach(card => {
+        const show = f === 'all' || card.dataset.cat === f;
+        card.style.display = show ? '' : 'none';
+      });
+    });
+  });
+
+  // Pre-select room if coming from another page
+  const params = new URLSearchParams(location.search);
+  const preRoom = params.get('room');
+  if (preRoom) {
+    const map = { 'clim-premium': 'clim', 'clim-confort': 'clim', 'clim-standard': 'clim', 'vent-confort': 'vent', 'vent-standard': 'vent' };
+    const cat = map[preRoom];
+    if (cat) {
+      document.querySelector(`[data-filter="${cat}"]`)?.click();
+    }
+  }
+</script>
+</body>
+</html>

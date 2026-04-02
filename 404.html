@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Page introuvable | Hôtel Marguo City</title>
+  <link rel="icon" type="image/png" href="images/logo.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Raleway:wght@300;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/main.css"/>
+  <link rel="stylesheet" href="css/loader.css"/>
+  <style>
+    body { min-height: 100vh; display: flex; flex-direction: column; }
+    .err-page {
+      flex: 1;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 4rem 5%;
+      position: relative; overflow: hidden;
+    }
+    .err-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 50%, rgba(107,78,10,.1) 0%, transparent 70%),
+        var(--black);
+    }
+    .err-content { position: relative; z-index: 1; }
+    .err-logo { height: 72px; margin: 0 auto 2.5rem; filter: drop-shadow(0 4px 24px rgba(201,168,76,.3)); }
+    .err-code {
+      font-family: var(--serif);
+      font-size: clamp(6rem, 18vw, 12rem);
+      font-weight: 300;
+      line-height: 1;
+      background: var(--gold);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: .5rem;
+    }
+    .err-title {
+      font-family: var(--serif); font-size: clamp(1.4rem,4vw,2.4rem);
+      font-weight: 300; margin-bottom: 1rem;
+    }
+    .err-p {
+      font-size: .88rem; color: var(--muted);
+      max-width: 380px; margin: 0 auto 3rem;
+      line-height: 1.8;
+    }
+    .err-links {
+      display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+    }
+    .divider { margin: 1.5rem auto 2rem; }
+  </style>
+</head>
+<body>
+  <div class="err-page">
+    <div class="err-bg"></div>
+    <div class="err-content">
+      <img class="err-logo" src="images/logo.png" alt="Marguo City" onerror="this.style.display='none'"/>
+      <div class="err-code">404</div>
+      <h1 class="err-title">Page introuvable</h1>
+      <div class="divider"></div>
+      <p class="err-p">La page que vous recherchez n'existe pas ou a été déplacée. Revenez à l'accueil pour continuer votre navigation.</p>
+      <div class="err-links">
+        <a href="index.html" class="btn btn-gold">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px;"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+          Accueil
+        </a>
+        <a href="reservation.html" class="btn btn-outline">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px;"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          Réserver
+        </a>
+        <a href="contact.html" class="btn btn-dark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          Contact
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="js/loader.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

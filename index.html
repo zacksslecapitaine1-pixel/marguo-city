@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Hôtel Marguo City – Bar & Restaurant à Adidogomé Soviépé, Lomé, Togo. Chambres climatisées et ventilées, salle de réunion, restaurant. Ouvert 24h/24."/>
+  <meta name="keywords" content="hôtel Lomé, Marguo City, bar restaurant Lomé, chambre Lomé, hôtel Adidogomé, Togo"/>
+  <meta name="author" content="Dev.zak"/>
+  <meta property="og:title" content="Hôtel Marguo City | Lomé, Togo"/>
+  <meta property="og:description" content="Votre havre d'élégance au cœur de Lomé. Chambres, restaurant, bar, salle de réunion. Ouvert 24h/24."/>
+  <meta property="og:image" content="images/hero.jpg"/>
+  <meta property="og:type" content="website"/>
+  <title>Hôtel Marguo City | Lomé, Togo</title>
+  <link rel="icon" type="image/png" href="images/logo.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/main.css"/>
+  <link rel="stylesheet" href="css/components.css"/>
+  <link rel="stylesheet" href="css/loader.css"/>
+  <style>
+    /* ── INDEX-SPECIFIC ── */
+    #about { background: var(--d1); }
+    #rooms-preview { background: var(--black); }
+    #restaurant-preview { background: var(--d1); }
+    #events-preview { background: var(--black); }
+
+    /* Photo mosaic about */
+    .about-mosaic {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 260px 180px;
+      gap: .6rem;
+      position: relative;
+    }
+    .about-mosaic img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform .6s ease;
+    }
+    .about-mosaic img:hover { transform: scale(1.03); }
+    .am-main { grid-column: 1; grid-row: 1 / 3; overflow:hidden; }
+    .am-tr   { grid-column: 2; grid-row: 1; overflow:hidden; }
+    .am-br   { grid-column: 2; grid-row: 2; overflow:hidden; }
+    .am-badge {
+      position: absolute;
+      bottom: 1.2rem; left: -.8rem;
+      background: var(--d1);
+      border: 1px solid var(--border-s);
+      padding: 1rem 1.5rem;
+      z-index: 2;
+    }
+    .am-badge .num {
+      font-family: var(--serif); font-size: 2rem; line-height: 1;
+      background: var(--gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      display: block;
+    }
+    .am-badge .lbl {
+      font-size: .52rem; font-weight: 800; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .am-frame {
+      position: absolute; bottom: -.8rem; right: -.8rem;
+      width: 90px; height: 90px;
+      border: 1px solid var(--border-s);
+      pointer-events: none;
+    }
+
+    /* Floating gold orb */
+    .orb {
+      position: absolute; border-radius: 50%;
+      pointer-events: none; z-index: 0;
+      filter: blur(80px);
+    }
+    .orb-1 { width:320px; height:320px; background: rgba(107,78,10,.12); top: -60px; right: -60px; }
+    .orb-2 { width:200px; height:200px; background: rgba(201,168,76,.07); bottom: 40px; left: 10%; }
+
+    /* Gallery strip */
+    .gallery-strip {
+      display: flex; gap: .6rem; overflow-x: auto; scrollbar-width: none;
+      padding: 0 5% 1.5rem;
+    }
+    .gallery-strip::-webkit-scrollbar { display: none; }
+    .gs-item {
+      flex: 0 0 240px; height: 180px; overflow: hidden; cursor: pointer;
+      position: relative;
+    }
+    .gs-item img { width:100%; height:100%; object-fit:cover; transition: transform .6s ease; }
+    .gs-item:hover img { transform: scale(1.07); }
+    .gs-item::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(7,6,5,.5) 0%, transparent 60%);
+    }
+    .gallery-fade-r {
+      position: absolute; right: 0; top: 0; bottom: 1.5rem;
+      width: 80px;
+      background: linear-gradient(to right, transparent, var(--black));
+      pointer-events: none; z-index: 1;
+    }
+    .gallery-section { position: relative; overflow: hidden; padding: 0 0 3rem; }
+    .gallery-section .s-intro { padding: 5rem 5% 2rem; max-width: var(--max); margin: 0 auto; }
+
+    /* Restaurant split */
+    .idx-rest {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+      border: 1px solid var(--border); overflow:hidden;
+    }
+    .idx-rest-photo { height: 460px; overflow:hidden; }
+    .idx-rest-photo img { width:100%; height:100%; object-fit:cover; }
+    .idx-rest-body {
+      padding: 4rem 3.5rem;
+      background: var(--d2);
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .idx-rest-body h2 { margin-bottom: 1rem; }
+    .idx-rest-body p  { font-size: .88rem; margin-bottom: 2rem; }
+
+    /* Price row */
+    .idx-price-row {
+      display: flex; flex-direction: column; gap: .7rem; margin-bottom: 2rem;
+    }
+    .ipr {
+      display: flex; justify-content: space-between;
+      padding: .8rem 1.1rem;
+      border: 1px solid var(--border); background: rgba(255,255,255,.02);
+      font-size: .82rem;
+    }
+    .ipr-val {
+      font-family: var(--serif); font-size: 1rem;
+      background: var(--gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    /* Events */
+    .idx-events {
+      display: grid; grid-template-columns: 55% 1fr; gap: 0;
+      border: 1px solid var(--border); overflow: hidden;
+    }
+    .idx-events-photo { position: relative; overflow: hidden; }
+    .idx-events-photo img { width:100%; height:100%; object-fit:cover; min-height:420px; }
+    .idx-events-body {
+      padding: 4rem 3rem;
+      background: var(--d2);
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .idx-events-body h2 { margin-bottom:1rem; }
+    .idx-events-body p  { font-size:.88rem; margin-bottom:2rem; }
+    .ev-pills { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 2rem; }
+    .ev-pill {
+      font-size: .6rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      padding: .35rem .9rem;
+      border: 1px solid var(--border-s); color: var(--g2);
+    }
+
+    @media(max-width:900px){
+      .about-mosaic { grid-template-rows: 220px 150px; }
+      .idx-rest { grid-template-columns:1fr; }
+      .idx-rest-photo { height:260px; }
+      .idx-rest-body { padding:2.5rem 2rem; }
+      .idx-events { grid-template-columns:1fr; }
+      .idx-events-photo img { min-height:260px; }
+      .idx-events-body { padding:2.5rem 2rem; }
+    }
+    @media(max-width:600px){
+      .about-mosaic { grid-template-columns:1fr; grid-template-rows:220px 160px 140px; }
+      .am-main { grid-column:1; grid-row:1; }
+      .am-tr   { grid-column:1; grid-row:2; }
+      .am-br   { grid-column:1; grid-row:3; }
+    }
+  </style>
+
+  <!-- SEO Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Hotel",
+    "name": "Hôtel Marguo City",
+    "description": "Hôtel Bar Restaurant à Lomé, Togo. Chambres climatisées et ventilées, salle de réunion, restaurant, bar.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Adidogomé Soviépé, non loin de l'École Primaire Soviépé",
+      "addressLocality": "Lomé",
+      "addressCountry": "TG"
+    },
+    "telephone": "+22899204638",
+    "openingHours": "Mo-Su 00:00-24:00",
+    "url": "https://marguocity.github.io",
+    "image": "images/hero.jpg",
+    "priceRange": "8000 – 15000 FCFA"
+  }
+  </script>
+</head>
+
+<body>
+
+<!-- ══ NAV ══════════════════════════════════════════════════════ -->
+<nav class="nav" id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <img class="nav-logo-img" src="images/logo.png" alt="Marguo City" onerror="this.style.display='none'"/>
+    <div class="nav-logo-text">
+      <span class="main">Marguo City</span>
+      <span class="sub">Hôtel · Bar · Restaurant</span>
+    </div>
+  </a>
+  <ul class="nav-links" id="navLinks"></ul>
+  <div class="nav-right">
+    <div class="lang-sw">
+      <button data-l="fr" class="on">FR</button>
+      <button data-l="en">EN</button>
+    </div>
+    <a href="reservation.html" class="nav-book" id="navBookBtn">Réserver</a>
+  </div>
+  <button class="burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Nav -->
+<nav class="mob-nav" id="mobNav"></nav>
+<div class="scrim" id="scrim"></div>
+
+<!-- ══ HERO ══════════════════════════════════════════════════════ -->
+<section class="hero" id="heroSection">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-photo"></div>
+  <div class="hero-vignette"></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow" data-t="pages.index.eyebrow">Lomé, Togo — MC Le Référentiel</p>
+    <img class="hero-logo-img" src="images/logo.png" alt="Marguo City" onerror="this.style.display='none'"/>
+    <h1 class="hero-title gold-text" data-t="pages.index.title">Marguo City</h1>
+    <p class="hero-subtitle" data-t="pages.index.subtitle">Hôtel · Bar · Restaurant</p>
+    <div class="hero-cta">
+      <a href="reservation.html" class="btn btn-gold">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        <span data-t="pages.index.cta1">Réserver une chambre</span>
+      </a>
+      <a href="chambres.html" class="btn btn-outline" data-t="pages.index.cta2">Découvrir</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <span data-t="pages.index.scroll">Défiler</span>
+    <span class="hero-scroll-line"></span>
+  </div>
+</section>
+
+<!-- ══ ABOUT ═════════════════════════════════════════════════════ -->
+<section id="about">
+  <div class="container">
+    <div class="g2" style="gap:4.5rem; align-items:center;">
+
+      <!-- Left: Photo mosaic -->
+      <div class="about-mosaic reveal">
+        <div class="am-main">
+          <img src="images/cour.jpg" alt="Cour Marguo City" onerror="this.src='images/hero.jpg'"/>
+        </div>
+        <div class="am-tr">
+          <img src="images/reception.jpg" alt="Réception" onerror="this.src='images/hero.jpg'"/>
+        </div>
+        <div class="am-br">
+          <img src="images/jardin.jpg" alt="Jardin" onerror="this.src='images/hero.jpg'"/>
+        </div>
+        <div class="am-badge">
+          <span class="num">24/7</span>
+          <span class="lbl">Toujours ouvert</span>
+        </div>
+        <div class="am-frame"></div>
+      </div>
+
+      <!-- Right: Text -->
+      <div class="reveal delay-2">
+        <p class="eyebrow" data-t="pages.index.about_eye">Notre établissement</p>
+        <h2 class="mt-sm" data-t="pages.index.about_h2">Un art de vivre au cœur de Lomé</h2>
+        <div class="divider"></div>
+        <p data-t="pages.index.about_p">Niché à Adidogomé Soviépé, l'Hôtel Marguo City vous accueille dans un cadre alliant élégance contemporaine et chaleur africaine.</p>
+
+        <!-- Stats bar -->
+        <div class="stats-bar mt-lg">
+          <div class="stat-item">
+            <div class="stat-n" data-t="pages.index.stat1_n">10+</div>
+            <div class="stat-l" data-t="pages.index.stat1_l">Chambres</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-n" data-t="pages.index.stat2_n">24/7</div>
+            <div class="stat-l" data-t="pages.index.stat2_l">Ouverture</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-n" data-t="pages.index.stat3_n">100</div>
+            <div class="stat-l" data-t="pages.index.stat3_l">Places salle</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-n" data-t="pages.index.stat4_n">3</div>
+            <div class="stat-l" data-t="pages.index.stat4_l">Espaces</div>
+          </div>
+        </div>
+
+        <div class="mt-md gap-btns">
+          <a href="reservation.html" class="btn btn-gold">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <span data-t="pages.index.cta1">Réserver</span>
+          </a>
+          <a href="chambres.html" class="btn btn-outline" data-t="pages.index.about_btn">Voir nos chambres</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ROOMS PREVIEW ══════════════════════════════════════════════ -->
+<section id="rooms-preview">
+  <div class="container">
+    <div class="text-center reveal">
+      <p class="eyebrow center" data-t="pages.index.rooms_eye">Hébergement</p>
+      <h2 class="mt-sm" data-t="pages.index.rooms_h2">Nos chambres</h2>
+      <div class="divider center"></div>
+      <p style="max-width:520px;margin:0 auto;" data-t="pages.index.rooms_sub">Climatisées ou ventilées, toutes nos chambres offrent le même soin du détail.</p>
+    </div>
+  </div>
+
+  <!-- Featured rooms mosaic -->
+  <div class="container" style="margin-top:3rem;">
+    <div class="feat-rooms reveal">
+      <div class="feat-room">
+        <img src="images/chambre-a.jpg" alt="Chambre Climatisée Premium" onerror="this.src='images/hero.jpg'"/>
+        <div class="feat-room-info">
+          <h3 class="gold-text">Climatisée Premium</h3>
+          <div class="price">15 000 FCFA / nuit</div>
+        </div>
+      </div>
+      <div class="feat-right">
+        <div class="feat-room">
+          <img src="images/chambre-c.jpg" alt="Chambre Ventilée Confort" onerror="this.src='images/hero.jpg'"/>
+          <div class="feat-room-info">
+            <h3>Ventilée Confort</h3>
+            <div class="price">10 000 FCFA / nuit</div>
+          </div>
+        </div>
+        <div class="feat-room">
+          <img src="images/chambre-d.jpg" alt="Chambre Standard" onerror="this.src='images/hero.jpg'"/>
+          <div class="feat-room-info">
+            <h3>Ventilée Standard</h3>
+            <div class="price">8 000 FCFA / nuit</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-md reveal delay-2">
+      <a href="chambres.html" class="btn btn-outline">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18M3 12h18M3 17h12"/></svg>
+        Voir toutes les chambres
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GALLERY STRIP ══════════════════════════════════════════════ -->
+<div class="gallery-section" style="background:var(--d1);">
+  <div class="gallery-section s-intro text-center reveal">
+    <p class="eyebrow center" style="margin-bottom:.5rem;">Galerie</p>
+    <h2>L'établissement en images</h2>
+    <div class="divider center"></div>
+  </div>
+  <div style="position:relative;">
+    <div class="gallery-strip">
+      <div class="gs-item"><img src="images/hero.jpg"       alt="Façade"/></div>
+      <div class="gs-item"><img src="images/salon.jpg"      alt="Salon"/></div>
+      <div class="gs-item"><img src="images/escalier.jpg"   alt="Escalier"/></div>
+      <div class="gs-item"><img src="images/couloir.jpg"    alt="Couloir"/></div>
+      <div class="gs-item"><img src="images/salle.jpg"      alt="Salle"/></div>
+      <div class="gs-item"><img src="images/restaurant.jpg" alt="Restaurant"/></div>
+      <div class="gs-item"><img src="images/cour.jpg"       alt="Cour"/></div>
+      <div class="gs-item"><img src="images/jardin.jpg"     alt="Jardin"/></div>
+      <div class="gs-item"><img src="images/cour2.jpg"      alt="Extérieur"/></div>
+    </div>
+    <div class="gallery-fade-r"></div>
+  </div>
+</div>
+
+<!-- ══ RESTAURANT PREVIEW ═════════════════════════════════════════ -->
+<section id="restaurant-preview">
+  <div class="container">
+    <div class="idx-rest reveal">
+      <div class="idx-rest-photo">
+        <img src="images/restaurant.jpg" alt="Restaurant Marguo City" onerror="this.src='images/hero.jpg'"/>
+      </div>
+      <div class="idx-rest-body">
+        <p class="eyebrow" data-t="pages.index.rest_eye">Gastronomie &amp; Bar</p>
+        <h2 class="mt-sm" data-t="pages.index.rest_h2">Restaurant &amp; Bar</h2>
+        <div class="divider"></div>
+        <p data-t="pages.index.rest_p">Savourez une cuisine authentique dans un cadre chaleureux.</p>
+        <div class="idx-price-row mt-md">
+          <div class="ipr">
+            <span>🍽 Repas</span>
+            <span class="ipr-val">1 000 – 4 500 FCFA</span>
+          </div>
+          <div class="ipr">
+            <span>🍺 Bières</span>
+            <span class="ipr-val">500 – 1 000 FCFA</span>
+          </div>
+          <div class="ipr">
+            <span>⏰ Horaires</span>
+            <span style="color:var(--g2);font-size:.8rem;font-weight:600;">24h/24 · 7j/7</span>
+          </div>
+        </div>
+        <div class="gap-btns">
+          <a href="restaurant.html" class="btn btn-gold" data-t="pages.index.rest_btn">Voir le menu</a>
+          <a href="contact.html" class="btn btn-outline">Nous contacter</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ EVENTS PREVIEW ════════════════════════════════════════════ -->
+<section id="events-preview">
+  <div class="container">
+    <div class="idx-events reveal">
+      <div class="idx-events-photo">
+        <img src="images/salle.jpg" alt="Salle de conférence Marguo City" onerror="this.src='images/hero.jpg'"/>
+      </div>
+      <div class="idx-events-body">
+        <p class="eyebrow" data-t="pages.index.events_eye">Espaces</p>
+        <h2 class="mt-sm" data-t="pages.index.events_h2">Salle &amp; Événements</h2>
+        <div class="divider"></div>
+        <p data-t="pages.index.events_p">Une salle climatisée et un espace extérieur pour vos réunions, conférences et réceptions jusqu'à 100 personnes.</p>
+        <div class="ev-pills mt-md">
+          <span class="ev-pill">80 – 100 places</span>
+          <span class="ev-pill">Climatisation</span>
+          <span class="ev-pill">Système audio</span>
+          <span class="ev-pill">Événements</span>
+        </div>
+        <a href="evenements.html" class="btn btn-gold" data-t="pages.index.events_btn">Demander un devis</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA BANNER ════════════════════════════════════════════════ -->
+<div class="cta-banner reveal">
+  <div class="cta-banner-content">
+    <p class="eyebrow center" style="margin-bottom:1rem;">Réservation en ligne</p>
+    <h2 data-t="pages.index.cta_h2">Votre séjour commence ici</h2>
+    <div class="divider center"></div>
+    <p data-t="pages.index.cta_p">Réservez en quelques clics, 24h/24. Notre assistant vous guide étape par étape.</p>
+    <div class="gap-btns" style="justify-content:center; margin-top:2rem;">
+      <a href="reservation.html" class="btn btn-gold">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        <span data-t="pages.index.cta_btn">Réserver maintenant</span>
+      </a>
+      <a href="https://wa.me/22899204638" target="_blank" rel="noopener" class="btn btn-wa">
+        <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.527 5.843L0 24l6.345-1.508A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.896 0-3.67-.52-5.19-1.427l-.37-.22-3.768.895.955-3.68-.24-.38A9.958 9.958 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FOOTER ════════════════════════════════════════════════════ -->
+<footer>
+  <div id="footerInner"></div>
+</footer>
+
+<!-- ══ SCRIPTS ═══════════════════════════════════════════════════ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="js/loader.js"></script>
+<script src="js/main.js"></script>
+<script src="js/scene.js"></script>
+</body>
+</html>
