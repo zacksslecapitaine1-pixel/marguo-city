@@ -91,8 +91,14 @@
 .stats-bar .stat-item:nth-child(4) .stat-n { background: linear-gradient(135deg,#7C3AED,#6D28D9); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
 
 /* ── ROOM CARDS — badge coloré par type ── */
-.room-card[data-cat="clim"] .room-card-type { border-color: var(--teal-l); color: var(--teal-l); }
-.room-card[data-cat="vent"] .room-card-type { border-color: var(--warm); color: var(--warm); }
+.room-card[data-cat="clim"] .room-card-type {
+  background: rgba(13,148,136,.85) !important;
+  border-color: var(--teal-l); color: #ffffff;
+}
+.room-card[data-cat="vent"] .room-card-type {
+  background: rgba(180,83,9,.85) !important;
+  border-color: var(--warm); color: #ffffff;
+}
 
 /* ── CTA BANNER — gradient coloré ── */
 .cta-banner {
@@ -183,19 +189,23 @@ footer { background: linear-gradient(160deg, #0e0c09 0%, #0a0d09 100%) !importan
 /* ── FILTER BUTTONS ── */
 .filter-btn.on, .filter-btn:hover {
   border-color: var(--teal-l) !important;
-  color: var(--teal-l) !important;
-  background: rgba(13,148,136,.08) !important;
+  color: #ffffff !important;
+  background: rgba(13,148,136,.25) !important;
 }
 
 /* ── EV PILLS colorés ── */
 .ev-pill {
-  background: rgba(2,132,199,.08) !important;
-  border-color: rgba(2,132,199,.35) !important;
-  color: #38BDF8 !important;
+  background: rgba(2,132,199,.15) !important;
+  border-color: rgba(2,132,199,.5) !important;
+  color: #ffffff !important;
 }
 
 /* ── HALL BADGES ── */
-.hall-badge { border-color: var(--teal-l) !important; color: var(--teal-l) !important; }
+.hall-badge {
+  background: rgba(7,6,5,.88) !important;
+  border-color: var(--teal-l) !important;
+  color: #ffffff !important;
+}
 
 /* ── QFORM INPUTS focus ── */
 .qf-input:focus, .cf-input:focus { border-color: var(--teal-l) !important; }
@@ -209,9 +219,9 @@ footer { background: linear-gradient(160deg, #0e0c09 0%, #0a0d09 100%) !importan
 
 /* ── CAT CHIPS restaurant ── */
 .cat-chip {
-  background: rgba(13,148,136,.08) !important;
-  border-color: rgba(13,148,136,.25) !important;
-  color: var(--teal-l) !important;
+  background: rgba(13,148,136,.15) !important;
+  border-color: rgba(13,148,136,.4) !important;
+  color: #ffffff !important;
 }
 
 /* ── BOOKING PAGE bg ── */

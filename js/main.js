@@ -22,7 +22,7 @@ const T = {
       ci: 'Check-in', ci_val: '24h/24 — Toujours disponible',
       co: 'Check-out', co_val: '24h/24 — Aucune contrainte',
       cancel: 'Annulation', cancel_val: '72h avant l\'arrivée',
-      deposit: 'Acompte', deposit_val: '50 % du montant total',
+      deposit: '', deposit_val: '',
       rights: '© 2025 Hôtel Marguo City · Lomé, Togo',
       dev: 'Conçu par <a href="https://dev-zak.netlify.app" target="_blank" rel="noopener">Dev.zak</a>'
     },
@@ -128,7 +128,7 @@ const T = {
       ci: 'Check-in', ci_val: '24/7 — Always available',
       co: 'Check-out', co_val: '24/7 — No constraints',
       cancel: 'Cancellation', cancel_val: '72h before arrival',
-      deposit: 'Deposit', deposit_val: '50% of total amount',
+      deposit: '', deposit_val: '',
       rights: '© 2025 Hôtel Marguo City · Lomé, Togo',
       dev: 'Designed by <a href="https://dev-zak.netlify.app" target="_blank" rel="noopener">Dev.zak</a>'
     },
@@ -339,7 +339,6 @@ function buildFooter() {
           <li><span>${f.ci} :</span> ${f.ci_val}</li>
           <li><span>${f.co} :</span> ${f.co_val}</li>
           <li><span>${f.cancel} :</span> ${f.cancel_val}</li>
-          <li><span>${f.deposit} :</span> ${f.deposit_val}</li>
         </ul>
       </div>
     </div>

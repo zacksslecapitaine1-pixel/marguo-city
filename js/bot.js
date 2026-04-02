@@ -205,13 +205,14 @@ function askDur(){
 function buildSum(){
   const L=TX[gl()];
   const total=S.stay==='night'?S.room.priceNight*S.nights:S.durPrice;
-  const dep=Math.ceil(total*.5);
   const rn=S.room[gl()].name;
   const dur=S.stay==='night'?L.ni_(S.nights):S.duration;
   const stL=S.stay==='night'?L.stN:L.stR;
 
-  const waText=[
-    `🏨 *Réservation — Hôtel Marguo City*`,``,
+  // WhatsApp message — chaque détail sur sa propre ligne
+  const lines=[
+    '🏨 *Réservation — Hôtel Marguo City*',
+    '',
     `👤 ${L.lN} : ${S.name}`,
     `📞 ${L.lPh} : ${S.phone}`,
     `🛏️ ${L.lR} : ${rn}`,
@@ -220,22 +221,31 @@ function buildSum(){
     `🕐 ${L.lH} : ${S.time}`,
     `⏳ ${L.lDu} : ${dur}`,
     `👥 ${L.lPe} : ${L.pe_(S.persons)}`,
-    `💳 ${L.lPa} : ${S.payment}`,``,
+    `💳 ${L.lPa} : ${S.payment}`,
+    '',
     `💰 ${L.lTo} : ${fmt(total)} FCFA`,
-    `💵 ${L.lAc} : ${fmt(dep)} FCFA`,``,
-    `_Via marguocity.github.io_`
-  ].join('\n');
-
-  const waLink=`https://wa.me/22899204638?text=${encodeURIComponent(waText)}`;
+    '',
+    '_Réservation via marguocity.github.io_'
+  ];
+  const waText=lines.join('%0A'); // %0A = saut de ligne WhatsApp
+  const waLink=`https://wa.me/22899204638?text=${waText}`;
 
   bot(L.su,`
     <div class="sum-card">
       <div class="sum-card-title">📋 Récapitulatif</div>
-      ${R(L.lN,S.name)}${R(L.lPh,S.phone)}${R(L.lR,rn)}
-      ${R(L.lSt,stL)}${R(L.lD,S.date)}${R(L.lH,S.time)}
-      ${R(L.lDu,dur)}${R(L.lPe,L.pe_(S.persons))}${R(L.lPa,S.payment)}
-      <div class="sum-total"><span class="slabel">${L.lTo}</span><span class="sval">${fmt(total)} FCFA</span></div>
-      <div class="sum-acompte">${L.lAc} : <span>${fmt(dep)} FCFA</span></div>
+      ${R(L.lN,S.name)}
+      ${R(L.lPh,S.phone)}
+      ${R(L.lR,rn)}
+      ${R(L.lSt,stL)}
+      ${R(L.lD,S.date)}
+      ${R(L.lH,S.time)}
+      ${R(L.lDu,dur)}
+      ${R(L.lPe,L.pe_(S.persons))}
+      ${R(L.lPa,S.payment)}
+      <div class="sum-total">
+        <span class="slabel">${L.lTo}</span>
+        <span class="sval">${fmt(total)} FCFA</span>
+      </div>
     </div>
     <a href="${waLink}" target="_blank" rel="noopener" class="wa-confirm">${IWA} ${L.cf}</a>
   `);

@@ -13,7 +13,7 @@
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  transition: opacity .4s ease, visibility .4s ease;
+  transition: opacity .22s ease, visibility .22s ease;
 }
 .page-loader.hidden {
   opacity: 0;
@@ -52,7 +52,7 @@
   top: 0; left: -100%;
   width: 100%; height: 100%;
   background: var(--gold);
-  animation: plSlide .5s cubic-bezier(.4,0,.2,1) forwards;
+  animation: plSlide .28s cubic-bezier(.4,0,.2,1) forwards;
 }
 @keyframes plSlide {
   from { left: -100%; }
