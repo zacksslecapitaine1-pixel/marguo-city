@@ -317,9 +317,9 @@
     padding-bottom: env(safe-area-inset-bottom, 12px) !important;
   }
   /* Cache le reste de la page quand le chat est en focus mobile */
-  body:has(.chat-shell) .bk-header,
-  body:has(.chat-shell) .bk-progress,
-  body:has(.chat-shell) .trust-bar,
-  body:has(.chat-shell) .ref-panel,
-  body:has(.chat-shell) .help-box { display: none; }
+  body.chat-active .bk-header,
+  body.chat-active .bk-progress,
+  body.chat-active .trust-bar,
+  body.chat-active .ref-panel,
+  body.chat-active .help-box { display: none; }
 }

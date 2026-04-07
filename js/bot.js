@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function () {
         m.className = 'msg bot';
         m.innerHTML = '<div class="msg-av">' + IBOT + '</div><div><div class="msg-bub">' + html + '</div></div>';
         chatMsgs.appendChild(m); sc(); resolve();
-      }, 680);
+      }, 300);
     });
   }
 
@@ -178,19 +178,31 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ── DÉMARRAGE ── */
-  setTimeout(function() {
-    eBotMsg(t().w1).then(function() {
-      setTimeout(function() {
-        eBotMsg(t().w2).then(function() {
-          setTimeout(function() {
-            eBotMsg(t().askName).then(function() {
-              eTextInput(t().ph, eStep_name);
-            });
-          }, 300);
-        });
-      }, 300);
-    });
-  }, 500);
+  window.startBot = function() {
+    alert('startBot called');
+    document.getElementById('startChatBtn').style.display = 'none';
+    document.querySelector('.chat-shell').style.display = 'flex';
+    document.body.classList.add('chat-active');
+    setTimeout(function() {
+      eBotMsg(t().w1).then(function() {
+        setTimeout(function() {
+          eBotMsg(t().w2).then(function() {
+            setTimeout(function() {
+              eBotMsg(t().askName).then(function() {
+                eTextInput(t().ph, eStep_name);
+              });
+            }, 100);
+          });
+        }, 100);
+      });
+    }, 100);
+  };
+
+  // Attacher l'event listener au bouton
+  var startBtn = document.querySelector('#startChatBtn button');
+  if (startBtn) {
+    startBtn.addEventListener('click', window.startBot);
+  }
 
   /* ── ÉTAPES ── */
   function eStep_name(v) {
@@ -236,7 +248,7 @@ document.addEventListener('DOMContentLoaded', function () {
         eBotMsg(t().askDate).then(function() {
           eTextInput('Ex : 10/04/2026', eStep_date);
         });
-      }, 200);
+      }, 50);
     });
   }
 
