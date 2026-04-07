@@ -108,7 +108,7 @@
     .map-header p  { font-size: .84rem; color: var(--muted); }
     .map-frame {
       border: 1px solid var(--border);
-      height: 380px; overflow: hidden;
+      height: 420px; overflow: hidden;
       position: relative;
       display: flex; align-items: center; justify-content: center;
       background: var(--d2);
@@ -294,10 +294,11 @@
     </div>
     <div class="map-frame">
       <iframe
-        src="https://www.openstreetmap.org/export/embed.html?bbox=1.13,6.13,1.19,6.18&layer=mapnik"
-        style="width:100%;height:100%;border:none;"
-        title="Localisation Hôtel Marguo City Lomé"
+        src="https://maps.google.com/maps?q=Adidogom%C3%A9+Sovi%C3%A9p%C3%A9%2C+Lom%C3%A9%2C+Togo&t=&z=15&ie=UTF8&iwloc=&output=embed"
+        style="width:100%;height:100%;border:none;filter:invert(92%) hue-rotate(180deg);"
+        title="Localisation Hôtel Marguo City — Adidogomé Soviépé Lomé"
         loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
         allowfullscreen>
       </iframe>
     </div>
@@ -335,6 +336,7 @@
 <footer><div id="footerInner"></div></footer>
 <script src="js/loader.js"></script>
 <script src="js/main.js"></script>
+<script src="js/bot.js"></script>
 <script>
   document.getElementById('cfSend').addEventListener('click', () => {
     const name    = document.getElementById('cfName').value.trim();

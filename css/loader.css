@@ -1,265 +1,160 @@
 /* ================================================================
-   LOADER.CSS — Page Transition + Mobile Critical Fixes
+   LOADER.CSS v4 — Hôtel Marguo City
+   Page transitions · Floating Réserver · Scroll progress
+   Back-to-top · Toast
    ================================================================ */
 
-/* ── PAGE LOADER ── */
-.page-loader {
+/* ── PAGE TRANSITION OVERLAY ── */
+.mc-pt {
   position: fixed;
   inset: 0;
-  z-index: 99999;
-  background: var(--black);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-  transition: opacity .22s ease, visibility .22s ease;
+  z-index: 9999;
+  background: var(--d1);
+  pointer-events: none;
+  transform: translateY(100%);
+  transition: transform 0.42s cubic-bezier(0.76, 0, 0.24, 1);
 }
-.page-loader.hidden {
+/* Logo line effect during transition */
+.mc-pt::before {
+  content: '';
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--g2), transparent);
   opacity: 0;
-  visibility: hidden;
+  transition: opacity 0.2s ease;
+}
+.mc-pt.entering {
+  transform: translateY(0);
+  pointer-events: all;
+}
+.mc-pt.entering::before { opacity: 1; }
+.mc-pt.leaving {
+  transform: translateY(-100%);
+  transition: transform 0.42s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* ── SCROLL PROGRESS BAR ── */
+.mc-sp {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--gold);
+  z-index: 2000;
+  width: 0%;
+  transition: width 0.1s linear;
   pointer-events: none;
 }
-.pl-logo {
-  height: 72px;
-  animation: plLogoPulse 1.2s ease infinite;
-  filter: drop-shadow(0 0 20px rgba(201,168,76,.4));
-}
-@keyframes plLogoPulse {
-  0%,100% { opacity: .7; transform: scale(.97); }
-  50%      { opacity: 1;  transform: scale(1.02); }
-}
-.pl-logo-text {
+
+/* ── BACK TO TOP ── */
+.mc-back-top {
+  position: fixed;
+  bottom: 26px; left: 26px;
+  width: 44px; height: 44px;
+  background: var(--d2);
+  border: 1px solid var(--border-s);
+  color: var(--g2);
+  font-size: 1.1rem;
   font-family: var(--serif);
-  font-size: 1.4rem;
-  font-weight: 300;
-  letter-spacing: .08em;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 500;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  cursor: pointer;
+}
+.mc-back-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+.mc-back-top:hover {
+  background: rgba(201,168,76,.12);
+  border-color: var(--g2);
+  transform: translateY(-2px);
+}
+
+/* ── FLOATING RÉSERVER BUTTON ── */
+.mc-float-reserve {
+  position: fixed;
+  bottom: 26px; right: 26px;
+  z-index: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
   background: var(--gold);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: plLogoPulse 1.2s .1s ease infinite;
-}
-.pl-bar-wrap {
-  width: 160px;
-  height: 1px;
-  background: rgba(201,168,76,.15);
-  overflow: hidden;
-  position: relative;
-}
-.pl-bar {
-  position: absolute;
-  top: 0; left: -100%;
-  width: 100%; height: 100%;
-  background: var(--gold);
-  animation: plSlide .28s cubic-bezier(.4,0,.2,1) forwards;
-}
-@keyframes plSlide {
-  from { left: -100%; }
-  to   { left:  100%; }
-}
-.pl-sub {
-  font-size: .58rem;
-  font-weight: 700;
-  letter-spacing: .32em;
+  color: var(--black);
+  padding: 14px 24px;
+  border: none;
+  border-radius: 0;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--muted);
-  animation: plLogoPulse 1.2s .2s ease infinite;
+  cursor: pointer;
+  box-shadow: 0 8px 32px rgba(107,78,10,.45), 0 2px 8px rgba(0,0,0,.5);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: frb-pulse 3.5s ease-in-out infinite;
+}
+.mc-float-reserve:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 48px rgba(107,78,10,.55), 0 4px 12px rgba(0,0,0,.6);
+}
+.mc-float-reserve svg { flex-shrink: 0; }
+
+@keyframes frb-pulse {
+  0%, 100% { box-shadow: 0 8px 32px rgba(107,78,10,.45), 0 2px 8px rgba(0,0,0,.5); }
+  50%       { box-shadow: 0 8px 40px rgba(201,168,76,.55), 0 0 0 8px rgba(201,168,76,.08), 0 2px 8px rgba(0,0,0,.5); }
 }
 
-/* Page fade-in after loader */
-.page-content {
-  animation: pageFadeIn .5s ease both;
-}
-@keyframes pageFadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: none; }
+@media (max-width: 560px) {
+  .mc-float-reserve { bottom: 18px; right: 18px; padding: 12px 18px; font-size: 0.66rem; }
+  .mc-back-top { bottom: 18px; left: 18px; }
 }
 
-/* ================================================================
-   MOBILE CRITICAL FIXES
-   ================================================================ */
-
-/* Prevent ALL horizontal overflow */
-html, body {
-  max-width: 100vw;
-  overflow-x: hidden !important;
+/* ── TOAST ── */
+.mc-toast {
+  position: fixed;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  z-index: 800;
+  background: var(--d2);
+  border: 1px solid var(--border-s);
+  color: var(--cream);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.84rem;
+  max-width: 340px;
+  min-width: 240px;
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  box-shadow: 0 12px 40px rgba(0,0,0,.6);
 }
-
-/* Fix nav on very small screens */
-@media (max-width: 380px) {
-  .nav-logo-text { display: none; }
-  .nav { padding: 0 4%; }
+.mc-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: all;
 }
-
-/* Fix hero on small screens */
-@media (max-width: 600px) {
-  .hero-title { font-size: clamp(2.6rem, 14vw, 4rem); }
-  .hero-cta { flex-direction: column; align-items: center; }
-  .hero-cta .btn { width: 100%; max-width: 280px; justify-content: center; }
-  .hero-logo-img { height: 70px; }
-
-  /* Fix all button overflow */
-  .btn { white-space: nowrap; font-size: .65rem; padding: .85rem 1.5rem; }
-  
-  /* Fix stats bar */
-  .stats-bar { grid-template-columns: 1fr 1fr; }
-  .stat-item:nth-child(2) { border-right: none; }
-  .stat-item:nth-child(3) { border-right: 1px solid var(--border); border-top: 1px solid var(--border); }
-  .stat-item:nth-child(4) { border-top: 1px solid var(--border); }
-
-  /* Fix about mosaic */
-  .about-mosaic {
-    grid-template-columns: 1fr !important;
-    grid-template-rows: auto auto auto !important;
-  }
-  .am-main { grid-column: 1 !important; grid-row: 1 !important; height: 240px; }
-  .am-tr   { grid-column: 1 !important; grid-row: 2 !important; height: 160px; }
-  .am-br   { grid-column: 1 !important; grid-row: 3 !important; height: 160px; }
-  .am-badge { left: .5rem; bottom: .5rem; }
-  .am-frame { display: none; }
-
-  /* Fix featured rooms */
-  .feat-rooms { grid-template-columns: 1fr !important; }
-  .feat-room img,
-  .feat-room:first-child img { height: 220px !important; min-height: unset !important; }
-
-  /* Fix gallery strip items */
-  .gs-item { flex: 0 0 200px; height: 150px; }
-
-  /* Fix index restaurant / events */
-  .idx-rest { grid-template-columns: 1fr !important; }
-  .idx-rest-photo { height: 240px !important; }
-  .idx-rest-body { padding: 2rem 1.5rem !important; }
-  .idx-events { grid-template-columns: 1fr !important; }
-  .idx-events-photo img { min-height: 220px !important; }
-  .idx-events-body { padding: 2rem 1.5rem !important; }
-
-  /* Fix room cards */
-  .rooms-grid { grid-template-columns: 1fr !important; }
-  .room-card-body { padding: 1.5rem !important; }
-  .room-card-foot { padding: 0 1.5rem 1.5rem !important; }
-  .room-card-foot .btn { font-size: .62rem; }
-
-  /* Fix policy band */
-  .policy-band { grid-template-columns: 1fr !important; }
-  .pol-cell { border-right: none !important; border-bottom: 1px solid var(--border); }
-  .pol-cell:last-child { border-bottom: none; }
-
-  /* Fix hall showcase */
-  .hall-showcase { grid-template-columns: 1fr !important; }
-  .hall-photo-wrap img { min-height: 240px !important; }
-  .hall-info { padding: 2rem 1.5rem !important; }
-
-  /* Fix outdoor split */
-  .outdoor-split { grid-template-columns: 1fr !important; }
-  .outdoor-photo { height: 220px !important; }
-  .outdoor-info { padding: 2rem 1.5rem !important; }
-
-  /* Fix use cases grid */
-  .use-grid { grid-template-columns: 1fr !important; }
-
-  /* Fix quote inner */
-  .quote-inner { grid-template-columns: 1fr !important; }
-
-  /* Fix bar split */
-  .bar-split { grid-template-columns: 1fr !important; }
-  .bar-photo  { height: 220px !important; }
-  .bar-body   { padding: 2rem 1.5rem !important; }
-
-  /* Fix menu grid */
-  .menu-grid { grid-template-columns: 1fr !important; }
-
-  /* Fix spec grid */
-  .spec-grid { grid-template-columns: 1fr !important; }
-
-  /* Fix contact main */
-  .ct-main { grid-template-columns: 1fr !important; }
-  .cf-row  { grid-template-columns: 1fr !important; }
-
-  /* Fix contact photos */
-  .ct-photos-grid { grid-template-columns: 1fr 1fr !important; }
-
-  /* Fix hours inner */
-  .hours-inner { flex-direction: column !important; text-align: center !important; }
-  .hours-inner .btn { width: 100%; justify-content: center; }
-
-  /* Fix ambiance grid */
-  .ambiance-grid { grid-template-columns: 1fr !important; grid-template-rows: auto !important; }
-  .ag-main, .ag-tr, .ag-br { grid-column: 1 !important; height: 200px !important; }
-
-  /* Fix ref panel */
-  .ref-mini-grid { grid-template-columns: 1fr !important; }
-  .ref-mini { border-right: none !important; border-bottom: 1px solid var(--border) !important; }
-  .ref-mini:last-child { border-bottom: none !important; }
-
-  /* Fix trust bar */
-  .trust-bar { flex-direction: column; align-items: stretch; }
-  .trust-item { justify-content: center; }
-
-  /* Fix footer */
-  .foot-top { grid-template-columns: 1fr !important; }
-  .foot-bottom { flex-direction: column !important; text-align: center; gap: .4rem; }
-
-  /* Fix CTA banner btns */
-  .cta-banner .gap-btns { flex-direction: column; align-items: center; }
-  .cta-banner .gap-btns .btn { width: 100%; max-width: 280px; justify-content: center; }
-
-  /* Fix section padding */
-  section { padding: 4rem 4% !important; }
-  .container { padding: 0 4%; }
-
-  /* Fix bot */
-  .bot-progress { display: none !important; }
-  .qr-wrap { flex-direction: column; }
-  .qr.room { min-width: unset; width: 100%; }
-  .msg-bub { max-width: 88% !important; font-size: .8rem; }
-  .chat-messages { min-height: 320px !important; max-height: 380px !important; padding: 1rem !important; }
-  .chat-input-area { padding: .8rem 1rem !important; }
-  .text-input-row { flex-wrap: wrap; }
-  .bot-input { min-width: 0; }
-  .chat-header { padding: 1rem !important; }
-
-  /* Fix page hero */
-  .pg-hero { min-height: 32vh; }
-  .pg-hero-content h1 { font-size: 2rem; }
+.mc-t-icon { font-size: 1.2rem; flex-shrink: 0; }
+.mc-t-msg  { flex: 1; line-height: 1.4; }
+.mc-t-close {
+  background: none; border: none;
+  color: var(--muted); font-size: 1rem;
+  cursor: pointer; flex-shrink: 0;
+  padding: 0 0 0 8px;
+  transition: color 0.2s;
 }
+.mc-t-close:hover { color: var(--cream); }
 
-/* Medium mobile */
-@media (min-width: 601px) and (max-width: 900px) {
-  .rooms-grid { grid-template-columns: 1fr 1fr !important; }
-  .ct-photos-grid { grid-template-columns: 1fr 1fr 1fr !important; }
-  .spec-grid { grid-template-columns: 1fr 1fr !important; }
-  .use-grid  { grid-template-columns: 1fr 1fr !important; }
-  .foot-top  { grid-template-columns: 1fr 1fr !important; }
-}
-
-/* Fix images overflow */
-img { max-width: 100%; height: auto; }
-.room-card-photo img,
-.rest-photo img,
-.bar-photo img,
-.hall-photo-wrap img,
-.outdoor-photo img,
-.feat-room img,
-.gs-item img,
-.ct-photo img,
-.ag-item img,
-.ambiance-grid img { width: 100%; }
-
-/* Prevent table/grid overflow */
-.stats-bar,
-.policy-band,
-.spec-grid,
-.use-grid {
-  width: 100%;
-  min-width: 0;
-}
-
-/* Fix nav z-index on scroll */
-@media (max-width: 900px) {
-  .nav { padding: 0 4%; }
-  .nav-logo-img { height: 40px; }
-  .nav.scrolled .nav-logo-img { height: 34px; }
-  .mob-nav { width: min(300px, 85vw); }
+@media (max-width: 480px) {
+  .mc-toast { left: 16px; right: 16px; max-width: none;
+    transform: translateY(80px); }
+  .mc-toast.show { transform: translateY(0); }
 }
