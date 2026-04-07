@@ -120,7 +120,7 @@
 }
 .about-photo-badge .num {
   font-family: var(--serif); font-size: 2.4rem; line-height: 1;
-  background: var(--gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  background: linear-gradient(135deg, #C9A84C 0%, #F5D78E 50%, #C9A84C 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
 .about-photo-badge .lbl {
   font-size: .55rem; font-weight: 700; letter-spacing: .2em;
@@ -145,7 +145,7 @@
 .stat-item:hover { background: rgba(201,168,76,.04); }
 .stat-n {
   font-family: var(--serif); font-size: 2.5rem; line-height: 1;
-  background: var(--gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  background: linear-gradient(135deg, #C9A84C 0%, #F5D78E 50%, #C9A84C 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   margin-bottom: .4rem;
 }
 .stat-l {
@@ -226,7 +226,7 @@
 }
 .price-main-val {
   font-family: var(--serif); font-size: 1.8rem;
-  background: var(--gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  background: linear-gradient(135deg, #C9A84C 0%, #F5D78E 50%, #C9A84C 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
 .price-main-unit { font-size: .68rem; color: var(--muted); letter-spacing: .08em; }
 .price-repos-label {
@@ -272,7 +272,7 @@
 .feat-room-info h3 { font-size: 1.25rem; margin-bottom: .2rem; }
 .feat-room-info .price {
   font-family: var(--serif); font-size: 1.1rem;
-  background: var(--gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  background: linear-gradient(135deg, #C9A84C 0%, #F5D78E 50%, #C9A84C 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
 .feat-right { display: flex; flex-direction: column; gap: .8rem; }
 
@@ -319,7 +319,7 @@
 }
 .price-list-item .pli-val {
   font-family: var(--serif); font-size: 1rem;
-  background: var(--gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  background: linear-gradient(135deg, #C9A84C 0%, #F5D78E 50%, #C9A84C 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
 
 /* ── FEATURE LIST ── */

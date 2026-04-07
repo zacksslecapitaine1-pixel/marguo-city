@@ -5,7 +5,7 @@
 
 /* ── RESET ── */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; font-size: 16px; }
+html { scroll-behavior: smooth; font-size: 17px; }
 body { overflow-x: hidden; }
 img, video { max-width: 100%; display: block; }
 a { text-decoration: none; color: inherit; }
@@ -59,10 +59,10 @@ h1 { font-family: var(--serif); font-weight: 300; line-height: 1.02; font-size: 
 h2 { font-family: var(--serif); font-weight: 300; line-height: 1.08; font-size: clamp(2.2rem,4.5vw,3.8rem); }
 h3 { font-family: var(--serif); font-weight: 400; line-height: 1.15; font-size: clamp(1.4rem,2.5vw,2rem); }
 h4 { font-family: var(--serif); font-weight: 400; line-height: 1.2; font-size: clamp(1.1rem,2vw,1.5rem); }
-p  { color: var(--light); line-height: 1.85; }
+p  { color: var(--light); line-height: 1.9; font-size: 1.05rem; }
 
 .gold-text {
-  background: var(--gold);
+  background: linear-gradient(135deg, #C9A84C 0%, #F5D78E 50%, #C9A84C 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -158,7 +158,7 @@ section { padding: var(--section-py) 5%; }
 }
 .nav-logo-text .main {
   font-size: 1.25rem;
-  background: var(--gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  background: linear-gradient(135deg, #C9A84C 0%, #F5D78E 50%, #C9A84C 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   display: block;
 }
 .nav-logo-text .sub {
@@ -387,4 +387,84 @@ footer {
   .g3, .g4 { grid-template-columns: 1fr; }
   .foot-top { grid-template-columns: 1fr; gap: 2rem; }
   .foot-bottom { flex-direction: column; gap: .6rem; text-align: center; }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   TYPOGRAPHIE AMÉLIORÉE v2 — Plus lisible · Plus élégante
+   ════════════════════════════════════════════════════════════════ */
+
+/* Police plus belle et plus grande pour le body */
+body {
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
+}
+
+/* Headings plus imposants */
+h1 { font-size: clamp(3.2rem, 8vw, 7rem); letter-spacing: -0.01em; }
+h2 { font-size: clamp(2.4rem, 5vw, 4rem); letter-spacing: -0.01em; }
+h3 { font-size: clamp(1.6rem, 3vw, 2.2rem); }
+h4 { font-size: clamp(1.2rem, 2vw, 1.6rem); }
+
+/* Paragraphes plus lisibles */
+p {
+  font-size: 1.0rem;
+  line-height: 1.92;
+  color: var(--light);
+}
+
+/* Nav links plus grands */
+.nav-links a {
+  font-size: 0.82rem !important;
+  letter-spacing: 0.14em !important;
+}
+
+/* Eyebrow labels plus nets */
+.eyebrow {
+  font-size: 0.7rem !important;
+  letter-spacing: 0.35em !important;
+}
+
+/* Boutons plus lisibles */
+.btn {
+  font-size: 0.75rem !important;
+  letter-spacing: 0.2em !important;
+  padding: 1.05rem 2.5rem !important;
+}
+.btn-sm { padding: 0.7rem 1.6rem !important; font-size: 0.68rem !important; }
+
+/* Hero subtitle plus grand */
+.hero-subtitle {
+  font-size: 1.15rem !important;
+  letter-spacing: 0.06em !important;
+  line-height: 1.8 !important;
+}
+
+/* Stat numbers plus imposants */
+.stat-n {
+  font-size: clamp(2rem, 4vw, 3rem) !important;
+  font-family: var(--serif) !important;
+}
+.stat-l {
+  font-size: 0.7rem !important;
+  letter-spacing: 0.2em !important;
+}
+
+/* Footer texte plus lisible */
+footer p, footer a, #footerInner p, #footerInner a {
+  font-size: 0.9rem !important;
+  line-height: 1.85 !important;
+}
+
+/* Room cards titres */
+.room-card h3 { font-size: clamp(1.4rem, 2.5vw, 1.9rem) !important; }
+
+/* Contact & sections diverses */
+.ct-body p, .ct-body a { font-size: 0.92rem !important; line-height: 1.8 !important; }
+.ct-body h4 { font-size: 1.15rem !important; }
+
+/* Mobile : pas de régression */
+@media (max-width: 768px) {
+  body { font-size: 1rem; }
+  p { font-size: 0.96rem; }
+  .btn { padding: 0.9rem 1.8rem !important; }
 }

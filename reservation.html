@@ -8,7 +8,7 @@
   <title>Réservation | Hôtel Marguo City</title>
   <link rel="icon" type="image/png" href="images/logo.png"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Raleway:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="css/main.css"/>
   <link rel="stylesheet" href="css/components.css"/>
   <link rel="stylesheet" href="css/loader.css"/>
@@ -109,7 +109,7 @@
     .ref-mini h5 { font-family: var(--serif); font-size: 1rem; margin-bottom: .3rem; }
     .ref-mini .ref-price {
       font-family: var(--serif); font-size: 1.1rem;
-      background: var(--gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      background: linear-gradient(135deg, #C9A84C 0%, #F5D78E 50%, #C9A84C 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
       display: block; margin-bottom: .4rem;
     }
     .ref-mini .ref-desc { font-size: .72rem; color: var(--muted); line-height: 1.6; }
@@ -314,6 +314,7 @@
 
 <script src="js/loader.js"></script>
 <script src="js/main.js"></script>
+<script src="js/bot.js"></script>
 <script>
   // Collapsible room reference
   const toggle  = document.getElementById('refToggle');
