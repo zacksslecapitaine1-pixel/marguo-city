@@ -7,8 +7,8 @@ const ROOMS=[
   {id:'clim-premium', fr:{name:'Climatisée Premium',desc:'Clim · Lit 3 places · Mini frigo · Placard · Chauffe-eau · WiFi'},en:{name:'Premium A/C Room',desc:'A/C · Triple bed · Mini fridge · Wardrobe · Water heater · WiFi'},priceNight:15000,repos:{type:'clim','1h':3000,'2h':5000,'3h-4h':8000}},
   {id:'clim-confort',  fr:{name:'Climatisée Confort',desc:'Clim · Lit 3 places · Mini frigo ou Placard · WiFi'},en:{name:'Comfort A/C Room',desc:'A/C · Triple bed · Mini fridge or Wardrobe · WiFi'},priceNight:12000,repos:{type:'clim','1h':3000,'2h':5000,'3h-4h':8000}},
   {id:'clim-standard', fr:{name:'Climatisée Standard',desc:'Clim · Lit 3 places · WiFi'},en:{name:'Standard A/C Room',desc:'A/C · Triple bed · WiFi'},priceNight:10000,repos:{type:'clim','1h':3000,'2h':5000,'3h-4h':8000}},
-  {id:'clim-confort-2',fr:{name:'Climatisée Confort +',desc:'Clim · Lit 3 places · Placard · Chauffe-eau · WiFi'},en:{name:'Comfort A/C Room +',desc:'A/C · Triple bed · Wardrobe · Water heater · WiFi'},priceNight:10000,repos:{type:'clim','1h':3000,'2h':5000,'3h-4h':8000}},
-  {id:'clim-simple',   fr:{name:'Climatisée Simple',   desc:'Clim · Lit 3 places · Placard · WiFi'},              en:{name:'Simple A/C Room',   desc:'A/C · Triple bed · Wardrobe · WiFi'},              priceNight:8000, repos:{type:'clim','1h':3000,'2h':5000,'3h-4h':8000}},
+  {id:'vent-confort',  fr:{name:'Ventilée Confort',desc:'Ventilateur · Lit 3 places · Placard · Chauffe-eau · WiFi'},en:{name:'Comfort Fan Room',desc:'Fan · Triple bed · Wardrobe · Water heater · WiFi'},priceNight:10000,repos:{type:'vent','1h':2500,'2h-3h':5000,'4h':6000}},
+  {id:'vent-standard', fr:{name:'Ventilée Standard',desc:'Ventilateur · Lit 3 places · Placard · WiFi'},en:{name:'Standard Fan Room',desc:'Fan · Triple bed · Wardrobe · WiFi'},priceNight:8000,repos:{type:'vent','1h':2500,'2h-3h':5000,'4h':6000}},
 ];
 
 const IBOT=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M12 3v4m0 0a4 4 0 014 4H8a4 4 0 014-4z"/><circle cx="9" cy="16" r="1" fill="currentColor"/><circle cx="15" cy="16" r="1" fill="currentColor"/></svg>`;
@@ -205,13 +205,14 @@ function askDur(){
 function buildSum(){
   const L=TX[gl()];
   const total=S.stay==='night'?S.room.priceNight*S.nights:S.durPrice;
-  const dep=Math.ceil(total*.5);
   const rn=S.room[gl()].name;
   const dur=S.stay==='night'?L.ni_(S.nights):S.duration;
   const stL=S.stay==='night'?L.stN:L.stR;
 
-  const waText=[
-    `🏨 *Réservation — Hôtel Marguo City*`,``,
+  // WhatsApp message — chaque détail sur sa propre ligne
+  const lines=[
+    '🏨 *Réservation — Hôtel Marguo City*',
+    '',
     `👤 ${L.lN} : ${S.name}`,
     `📞 ${L.lPh} : ${S.phone}`,
     `🛏️ ${L.lR} : ${rn}`,
@@ -220,22 +221,31 @@ function buildSum(){
     `🕐 ${L.lH} : ${S.time}`,
     `⏳ ${L.lDu} : ${dur}`,
     `👥 ${L.lPe} : ${L.pe_(S.persons)}`,
-    `💳 ${L.lPa} : ${S.payment}`,``,
+    `💳 ${L.lPa} : ${S.payment}`,
+    '',
     `💰 ${L.lTo} : ${fmt(total)} FCFA`,
-    `💵 ${L.lAc} : ${fmt(dep)} FCFA`,``,
-    `_Via marguocity.github.io_`
-  ].join('\n');
-
-  const waLink=`https://wa.me/22899204638?text=${encodeURIComponent(waText)}`;
+    '',
+    '_Réservation via marguocity.github.io_'
+  ];
+  const waText=lines.join('%0A'); // %0A = saut de ligne WhatsApp
+  const waLink=`https://wa.me/22899204638?text=${waText}`;
 
   bot(L.su,`
     <div class="sum-card">
       <div class="sum-card-title">📋 Récapitulatif</div>
-      ${R(L.lN,S.name)}${R(L.lPh,S.phone)}${R(L.lR,rn)}
-      ${R(L.lSt,stL)}${R(L.lD,S.date)}${R(L.lH,S.time)}
-      ${R(L.lDu,dur)}${R(L.lPe,L.pe_(S.persons))}${R(L.lPa,S.payment)}
-      <div class="sum-total"><span class="slabel">${L.lTo}</span><span class="sval">${fmt(total)} FCFA</span></div>
-      <div class="sum-acompte">${L.lAc} : <span>${fmt(dep)} FCFA</span></div>
+      ${R(L.lN,S.name)}
+      ${R(L.lPh,S.phone)}
+      ${R(L.lR,rn)}
+      ${R(L.lSt,stL)}
+      ${R(L.lD,S.date)}
+      ${R(L.lH,S.time)}
+      ${R(L.lDu,dur)}
+      ${R(L.lPe,L.pe_(S.persons))}
+      ${R(L.lPa,S.payment)}
+      <div class="sum-total">
+        <span class="slabel">${L.lTo}</span>
+        <span class="sval">${fmt(total)} FCFA</span>
+      </div>
     </div>
     <a href="${waLink}" target="_blank" rel="noopener" class="wa-confirm">${IWA} ${L.cf}</a>
   `);

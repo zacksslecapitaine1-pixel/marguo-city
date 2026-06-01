@@ -8,7 +8,7 @@
   <title>Réservation | Hôtel Marguo City</title>
   <link rel="icon" type="image/png" href="images/logo.png"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Raleway:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="css/main.css"/>
   <link rel="stylesheet" href="css/components.css"/>
   <link rel="stylesheet" href="css/loader.css"/>
@@ -109,7 +109,7 @@
     .ref-mini h5 { font-family: var(--serif); font-size: 1rem; margin-bottom: .3rem; }
     .ref-mini .ref-price {
       font-family: var(--serif); font-size: 1.1rem;
-      background: linear-gradient(135deg, #C9A84C 0%, #F5D78E 50%, #C9A84C 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      background: var(--gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
       display: block; margin-bottom: .4rem;
     }
     .ref-mini .ref-desc { font-size: .72rem; color: var(--muted); line-height: 1.6; }
@@ -143,7 +143,7 @@
     }
   </style>
 </head>
-<body class="is-reservation-page">
+<body>
 
 <div class="bk-bg"></div>
 
@@ -173,7 +173,7 @@
 <div id="booking-page">
 
   <!-- HEADER -->
-  <div class="bk-header">
+  <div class="bk-header reveal">
     <p class="eyebrow center" data-t="pages.booking.eye">Réservation en ligne</p>
     <h1 class="mt-sm gold-text" data-t="pages.booking.h1">Réserver une chambre</h1>
     <p data-t="pages.booking.sub">Notre assistant vous guide étape par étape. Simple, rapide, disponible 24h/24.</p>
@@ -196,8 +196,8 @@
   </div>
 
   <!-- CHAT WINDOW -->
-  <div class="bk-chat">
-    <div class="chat-shell" style="display:flex;">
+  <div class="bk-chat reveal">
+    <div class="chat-shell">
       <!-- Header -->
       <div class="chat-header">
         <div class="chat-header-avatar">
