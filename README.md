@@ -1,3 +1,15 @@
+# Hôtel Marguo City — Site web
+
+Site vitrine de l'**Hôtel Marguo City** (bar, restaurant et hôtel à Adidogomé Soviépé, Lomé, Togo) : chambres climatisées et ventilées, restaurant, salle de réunion, événements et réservation via chatbot.
+
+**Démo :** https://zacksslecapitaine1-pixel.github.io/marguo-city/
+
+**Stack :** HTML · CSS · JavaScript · Three.js (animation 3D) · SEO (sitemap, robots.txt)
+**Déploiement :** site statique publié depuis `master` via GitHub Pages.
+**Auteur :** Zackss (Oumate Razakou) — [Dev.zak](https://dev-zak.netlify.app), Lomé, Togo.
+
+---
+
 # Hôtel Marguo City — Site Web
 **Développé par Dev.zak** · dev-zak.netlify.app
 
